@@ -1,13 +1,19 @@
 <package>
-  <description brief="friproject">
+  <description brief="test_blur">
 
-     friproject
+     test_blur
 
   </description>
   <author>C.M. De La Iglesia</author>
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
-  <url>http://ros.org/wiki/friproject</url>
+  <url>http://ros.org/wiki/test_blur</url>
+
+  <depend package="roscpp"/>
+  <depend package="sensor_msgs"/>
+  <depend package="opencv2"/>
+  <depend package="cv_bridge"/>
+  <depend package="image_transport"/>
 
 </package>
 
