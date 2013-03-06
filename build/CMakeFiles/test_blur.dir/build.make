@@ -63,12 +63,12 @@ CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/xmlrpcpp/pac
 CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/roscpp/package.xml
 CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/geometry_msgs/package.xml
 CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/sensor_msgs/package.xml
+CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/catkin/package.xml
 CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/opencv2/package.xml
 CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/cv_bridge/package.xml
 CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/message_filters/package.xml
 CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/console_bridge/package.xml
 CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/class_loader/package.xml
-CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/catkin/package.xml
 CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/rospack/package.xml
 CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/roslib/package.xml
 CMakeFiles/test_blur.dir/src/test_blur.cpp.o: /opt/ros/groovy/share/pluginlib/package.xml

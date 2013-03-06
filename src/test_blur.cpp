@@ -12,13 +12,83 @@
 #include <zxing/common/Counted.h>
 #include <zxing/common/GlobalHistogramBinarizer.h>
 
-image_transport::Publisher image_pub;
-
-zxing::qrcode::QRCodeReader reader;
+using namespace std;
+using namespace zxing;
+using namespace zxing::qrcode;
 
 void blurCB(const sensor_msgs::ImageConstPtr &msg)
 {
-  const sensor_msgs::Image img = *msg;
+ 
+ 
+  //A buffer containing an image. In your code, this would be an image from your camera. In this 
+     // example, it's just an array containing the code for "Hello!". 
+  /*try
+	{
+	  /*uint8_t buffer[] = 
+    { 
+      255, 255, 255, 255, 0, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+      255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 
+      255,  0 , 0, 0, 0, 0, 0,  0 , 0, 255,  0 , 255,  0 , 255, 255,  0 , 255, 255, 255, 255, 255,  0 , 255, 
+      255,  0 , 0,  0 ,  0 ,  0 , 0,  0 , 255, 255,  0 ,  0 , 255, 255, 255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255, 
+      255,  0 , 0,  0 ,  0 ,  0 , 0,  0 , 255, 255,  0 ,  0 ,  0 , 255, 255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255, 
+      255,  0 , 0,  0 ,  0 ,  0 , 0,  0 , 255, 255, 255,  0 , 255,  0 , 255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255, 
+      255,  0 , 0, 0, 0, 0, 0,  0 , 0, 255, 255, 255,  0 ,  0 , 255,  0 , 255, 255, 255, 255, 255,  0 , 255, 
+      255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 , 255,  0 , 255,  0 , 255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 
+      255, 255, 255, 255, 255, 0, 0, 0, 255,  0 ,  0 ,  0 ,  0 ,  0 , 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+      255,  0 ,  0 , 255,  0 ,  0 , 255,  0 , 255, 255,  0 ,  0 , 255,  0 , 255,  0 , 255, 255, 255, 255, 255,  0 , 255, 
+      255,  0 ,  0 ,  0 ,  0 ,  0 , 255, 255,  0 , 255, 255,  0 , 255,  0 , 255,  0 , 255,  0 ,  0 ,  0 , 255, 255, 255, 
+      255, 255, 255, 255, 255, 255, 255,  0 , 255,  0 ,  0 ,  0 , 255, 255,  0 ,  0 , 255,  0 , 255,  0 ,  0 ,  0 , 255, 
+      255, 255, 255,  0 ,  0 , 255, 255, 255,  0 ,  0 ,  0 , 255,  0 , 255, 255, 255, 255, 255, 255,  0 , 255, 255, 255, 
+      255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 255,  0 , 255, 255, 255, 255,  0 , 255, 255,  0 , 255,  0 , 255, 255, 
+      255, 255, 255, 255, 255, 255, 255, 255, 255,  0 ,  0 , 255,  0 ,  0 , 255, 255, 255, 255,  0 , 255,  0 ,  0 , 255, 
+      255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 255, 255,  0 , 255,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 , 255, 255, 255, 
+      255,  0 , 255, 255, 255, 255, 255,  0 , 255, 255,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 ,  0 ,  0 ,  0 , 255, 255, 255, 
+      255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255,  0 , 255, 255,  0 ,  0 , 255,  0 ,  0 , 255,  0 , 255,  0 ,  0 , 255, 
+      255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255,  0 , 255,  0 ,  0 ,  0 , 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+      255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255, 255,  0 ,  0 , 255, 255, 255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 
+      255,  0 , 255, 255, 255, 255, 255,  0 , 255,  0 , 255,  0 , 255, 255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 
+      255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 , 255,  0 ,  0 , 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+      255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
+    }; 
+  int width = 23; 
+  int height = 23;*/
+  /*const sensor_msgs::Image img = *msg;
+
+  cv_bridge::CvImagePtr cvimageptr = cv_bridge::toCvCopy(msg);
+  cv::Mat cvImage = cvimageptr->image;
+  cv::Mat cvOutput;
+
+  cv::cvtColor(cvImage, cvOutput, CV_RGB2GRAY);
+
+  cv::Size size = cvOutput.size();
+  unsigned char *buffer = cvOutput.ptr();
+  int width = size.width;
+  int height = size.height;
+ 
+  // Convert the buffer to something that the library understands. 
+  Ref<LuminanceSource> source (new GreyscaleLuminanceSource(buffer,width,height,0,0,width,height)); 
+ 
+  // Turn it into a binary image. 
+  Ref<Binarizer> binarizer (new GlobalHistogramBinarizer(source)); 
+  Ref<BinaryBitmap> image(new BinaryBitmap(binarizer));
+ 
+  // Tell the decoder to try as hard as possible. 
+  DecodeHints hints(DecodeHints::DEFAULT_HINT); 
+  hints.setTryHarder(true); 
+ 
+  // Perform the decoding. 
+  QRCodeReader reader;
+  Ref<Result> result(reader.decode(image, hints));
+ 
+  // Output the result. 
+  cout << result->getText()->getText() << endl;
+ }
+catch (zxing::Exception& e) 
+	{
+    cerr << "Error: " << e.what() << endl;
+  }*/
+
+    const sensor_msgs::Image img = *msg;
 
   cv_bridge::CvImagePtr image = cv_bridge::toCvCopy(msg);
   cv::Mat cvImage = image->image;
@@ -26,33 +96,27 @@ void blurCB(const sensor_msgs::ImageConstPtr &msg)
 
   cv::cvtColor(cvImage, cvOutput, CV_RGB2GRAY);
 
-  zxing::GreyscaleLuminanceSource lum_source(cvOutput.data,
-					     cvOutput.cols,
-					     cvOutput.rows,
-					     0, 0, 
-					     cvOutput.cols,
-					     cvOutput.rows);
-  zxing::Ref<zxing::GreyscaleLuminanceSource> source_ref(&lum_source);
-  zxing::GlobalHistogramBinarizer binarizer(source_ref);
-  zxing::Ref<zxing::Binarizer> binarizer_ref((zxing::Binarizer*) &binarizer);
-  zxing::BinaryBitmap bitmap(binarizer_ref);
-  zxing::Ref<zxing::BinaryBitmap> bitmap_ref(bitmap);
+  cv::Size size = cvOutput.size();
 
-  //reader.decode(zxing::Ref<zxing::BinaryBitmap>(&bitmap),zxing::DecodeHints::DEFAULT_HINT);
+  std::cout << "Crahs?" << std::endl;
 
-  zxing::Ref<zxing::Result> result = reader.decode(zxing::Ref<zxing::BinaryBitmap>(&bitmap),zxing::DecodeHints::DEFAULT_HINT);
-					   
+  try {
+    Ref<LuminanceSource> source(new GreyscaleLuminanceSource(cvOutput.ptr(),size.width,size.height,0,0,size.width,size.height));
 
-  std::cout << "Recieved image..." << std::endl;
-  std::cout << "Text: " << (*result).getText() << std::endl;
+    Ref<Binarizer> binarizer(new GlobalHistogramBinarizer(source));
+    Ref<BinaryBitmap> bitmap(new BinaryBitmap(binarizer));
+    DecodeHints hints(DecodeHints::BARCODEFORMAT_QR_CODE_HINT); 
+    hints.setTryHarder(true); 
+    QRCodeReader reader;
+    Ref<Result> result(reader.decode(bitmap,hints));
+    cout << "Detected QR Code!" << endl;
+    cout << "Result: " << result->getText()->getText() << endl;
+  }
+  catch(Exception &e) {
+    cout << "No QR Code" << endl;
+  }
 
-  /*image->image = cvOutput;
-  image->encoding = "mono8";
-
-  std::cout << "Recieved image..." << std::endl;
-
-  image_pub.publish(image->toImageMsg());*/
-  
+  cout << "-----------------------------------------------------" << endl;
 }
 
 int main( int argc, char** argv)
@@ -63,10 +127,8 @@ int main( int argc, char** argv)
 
   image_transport::ImageTransport it(n);
 
-  image_pub = it.advertise("blurred_image",1);
-
   image_transport::Subscriber sub = 
-    it.subscribe("kinect/rgb/image_color",
+    it.subscribe("camera/rgb/image_color",
 		 1,
 		 blurCB);
 
