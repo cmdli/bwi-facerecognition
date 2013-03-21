@@ -1,9 +1,20 @@
 
+#include <ros/ros.h>
+
+#include <image_transport/image_transport.h>
+#include <cv_bridge/cv_bridge.h>
+#include <opencv/cv.h>
+#include <vector>
+
+#include "opencv2/core/core.hpp"
+#include "opencv2/features2d/features2d.hpp"
+
 #define INPUT_TOPIC "camera/rgb/image_color"
-#define OUTPUT_TOPIC "detector/gradients"
+#define OUTPUT_TOPIC "detector/blurred"
 
 image_transport::Publisher publisher;
 
+using namespace std;
 using namespace cv;
 
 void callback(const sensor_msgs::ImageConstPtr &msg)
@@ -12,23 +23,20 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
   const sensor_msgs::Image img = *msg;
   cv_bridge::CvImagePtr image = cv_bridge::toCvCopy(msg);
   Mat cvImage = image->image;
-  Mat_<int> cvGradientsX, cvGradientsY, cvGradients;
+  Mat cvOutput; 
 
+  vector<KeyPoint> keypoints;
 
-  //Create kernels
-  Mat kernel_x = (Mat_<int>(1,3) << -1,0,-1);
-  Mat kernel_y = (Mat_<int>(3,1) << -1,
-		                        0,
-		                        1);
+  cvtColor(cvImage, cvImage, CV_RGB2GRAY);
 
-  filter2D(cvImage, cvGradientsX, kernel_x);
-  filter2D(cvImage, cvGradientsY, kernel_y);
+  ORB orb;
 
-  sqrt(cvGradientsX.mul(cvGradientsX) + cvGradientsY.mul(cvGradientsY), cvGradients);
+  orb(cvImage, noArray(), keypoints, noArray());
 
-  image->image = cvGradients;;
+  drawKeypoints(cvImage, keypoints, cvImage);
   
   //Publish image
+  image->encoding = "mono8";
   publisher.publish(image->toImageMsg());
 
 }

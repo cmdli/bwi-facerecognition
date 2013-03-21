@@ -137,6 +137,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named ORBDetector
+
+# Build rule for target.
+ORBDetector: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ORBDetector
+.PHONY : ORBDetector
+
+# fast build rule for target.
+ORBDetector/fast:
+	$(MAKE) -f CMakeFiles/ORBDetector.dir/build.make CMakeFiles/ORBDetector.dir/build
+.PHONY : ORBDetector/fast
+
+#=============================================================================
 # Target rules for targets named ROSBUILD_genmsg_cpp
 
 # Build rule for target.
@@ -161,6 +174,19 @@ ROSBUILD_gensrv_cpp: cmake_check_build_system
 ROSBUILD_gensrv_cpp/fast:
 	$(MAKE) -f CMakeFiles/ROSBUILD_gensrv_cpp.dir/build.make CMakeFiles/ROSBUILD_gensrv_cpp.dir/build
 .PHONY : ROSBUILD_gensrv_cpp/fast
+
+#=============================================================================
+# Target rules for targets named SIFTDetector
+
+# Build rule for target.
+SIFTDetector: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SIFTDetector
+.PHONY : SIFTDetector
+
+# fast build rule for target.
+SIFTDetector/fast:
+	$(MAKE) -f CMakeFiles/SIFTDetector.dir/build.make CMakeFiles/SIFTDetector.dir/build
+.PHONY : SIFTDetector/fast
 
 #=============================================================================
 # Target rules for targets named clean_test_results
@@ -383,6 +409,54 @@ gtest_main/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+src/ORBDetector.o: src/ORBDetector.cpp.o
+.PHONY : src/ORBDetector.o
+
+# target to build an object file
+src/ORBDetector.cpp.o:
+	$(MAKE) -f CMakeFiles/ORBDetector.dir/build.make CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.o
+.PHONY : src/ORBDetector.cpp.o
+
+src/ORBDetector.i: src/ORBDetector.cpp.i
+.PHONY : src/ORBDetector.i
+
+# target to preprocess a source file
+src/ORBDetector.cpp.i:
+	$(MAKE) -f CMakeFiles/ORBDetector.dir/build.make CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.i
+.PHONY : src/ORBDetector.cpp.i
+
+src/ORBDetector.s: src/ORBDetector.cpp.s
+.PHONY : src/ORBDetector.s
+
+# target to generate assembly for a file
+src/ORBDetector.cpp.s:
+	$(MAKE) -f CMakeFiles/ORBDetector.dir/build.make CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.s
+.PHONY : src/ORBDetector.cpp.s
+
+src/SIFTDetector.o: src/SIFTDetector.cpp.o
+.PHONY : src/SIFTDetector.o
+
+# target to build an object file
+src/SIFTDetector.cpp.o:
+	$(MAKE) -f CMakeFiles/SIFTDetector.dir/build.make CMakeFiles/SIFTDetector.dir/src/SIFTDetector.cpp.o
+.PHONY : src/SIFTDetector.cpp.o
+
+src/SIFTDetector.i: src/SIFTDetector.cpp.i
+.PHONY : src/SIFTDetector.i
+
+# target to preprocess a source file
+src/SIFTDetector.cpp.i:
+	$(MAKE) -f CMakeFiles/SIFTDetector.dir/build.make CMakeFiles/SIFTDetector.dir/src/SIFTDetector.cpp.i
+.PHONY : src/SIFTDetector.cpp.i
+
+src/SIFTDetector.s: src/SIFTDetector.cpp.s
+.PHONY : src/SIFTDetector.s
+
+# target to generate assembly for a file
+src/SIFTDetector.cpp.s:
+	$(MAKE) -f CMakeFiles/SIFTDetector.dir/build.make CMakeFiles/SIFTDetector.dir/src/SIFTDetector.cpp.s
+.PHONY : src/SIFTDetector.cpp.s
+
 src/test_blur.o: src/test_blur.cpp.o
 .PHONY : src/test_blur.o
 
@@ -413,8 +487,10 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... ORBDetector"
 	@echo "... ROSBUILD_genmsg_cpp"
 	@echo "... ROSBUILD_gensrv_cpp"
+	@echo "... SIFTDetector"
 	@echo "... clean_test_results"
 	@echo "... doxygen"
 	@echo "... edit_cache"
@@ -438,6 +514,12 @@ help:
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... src/ORBDetector.o"
+	@echo "... src/ORBDetector.i"
+	@echo "... src/ORBDetector.s"
+	@echo "... src/SIFTDetector.o"
+	@echo "... src/SIFTDetector.i"
+	@echo "... src/SIFTDetector.s"
 	@echo "... src/test_blur.o"
 	@echo "... src/test_blur.i"
 	@echo "... src/test_blur.s"

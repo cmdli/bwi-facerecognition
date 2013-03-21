@@ -50,6 +50,41 @@ CMAKE_SOURCE_DIR = /nishome/cmdli/ros/rosbuild_ws/class-code/friproject
 CMAKE_BINARY_DIR = /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build
 
 #=============================================================================
+# Target rules for target CMakeFiles/ORBDetector.dir
+
+# All Build rule for target.
+CMakeFiles/ORBDetector.dir/all: CMakeFiles/rosbuild_precompile.dir/all
+	$(MAKE) -f CMakeFiles/ORBDetector.dir/build.make CMakeFiles/ORBDetector.dir/depend
+	$(MAKE) -f CMakeFiles/ORBDetector.dir/build.make CMakeFiles/ORBDetector.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles  1
+	@echo "Built target ORBDetector"
+.PHONY : CMakeFiles/ORBDetector.dir/all
+
+# Include target in all.
+all: CMakeFiles/ORBDetector.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/ORBDetector.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ORBDetector.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles 0
+.PHONY : CMakeFiles/ORBDetector.dir/rule
+
+# Convenience name for target.
+ORBDetector: CMakeFiles/ORBDetector.dir/rule
+.PHONY : ORBDetector
+
+# clean rule for target.
+CMakeFiles/ORBDetector.dir/clean:
+	$(MAKE) -f CMakeFiles/ORBDetector.dir/build.make CMakeFiles/ORBDetector.dir/clean
+.PHONY : CMakeFiles/ORBDetector.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/ORBDetector.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/ROSBUILD_genmsg_cpp.dir
 
 # All Build rule for target.
@@ -112,6 +147,41 @@ clean: CMakeFiles/ROSBUILD_gensrv_cpp.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/SIFTDetector.dir
+
+# All Build rule for target.
+CMakeFiles/SIFTDetector.dir/all: CMakeFiles/rosbuild_precompile.dir/all
+	$(MAKE) -f CMakeFiles/SIFTDetector.dir/build.make CMakeFiles/SIFTDetector.dir/depend
+	$(MAKE) -f CMakeFiles/SIFTDetector.dir/build.make CMakeFiles/SIFTDetector.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles  2
+	@echo "Built target SIFTDetector"
+.PHONY : CMakeFiles/SIFTDetector.dir/all
+
+# Include target in all.
+all: CMakeFiles/SIFTDetector.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/SIFTDetector.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/SIFTDetector.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles 0
+.PHONY : CMakeFiles/SIFTDetector.dir/rule
+
+# Convenience name for target.
+SIFTDetector: CMakeFiles/SIFTDetector.dir/rule
+.PHONY : SIFTDetector
+
+# clean rule for target.
+CMakeFiles/SIFTDetector.dir/clean:
+	$(MAKE) -f CMakeFiles/SIFTDetector.dir/build.make CMakeFiles/SIFTDetector.dir/clean
+.PHONY : CMakeFiles/SIFTDetector.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/SIFTDetector.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/clean_test_results.dir
 
 # All Build rule for target.
@@ -149,7 +219,7 @@ clean: CMakeFiles/clean_test_results.dir/clean
 CMakeFiles/doxygen.dir/all:
 	$(MAKE) -f CMakeFiles/doxygen.dir/build.make CMakeFiles/doxygen.dir/depend
 	$(MAKE) -f CMakeFiles/doxygen.dir/build.make CMakeFiles/doxygen.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles  3
 	@echo "Built target doxygen"
 .PHONY : CMakeFiles/doxygen.dir/all
 
@@ -521,7 +591,7 @@ clean: CMakeFiles/test-results-run.dir/clean
 CMakeFiles/test_blur.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/test_blur.dir/build.make CMakeFiles/test_blur.dir/depend
 	$(MAKE) -f CMakeFiles/test_blur.dir/build.make CMakeFiles/test_blur.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles  4
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles  6
 	@echo "Built target test_blur"
 .PHONY : CMakeFiles/test_blur.dir/all
 
@@ -603,7 +673,7 @@ gtest/preinstall:
 gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles  4
 	@echo "Built target gtest"
 .PHONY : gtest/CMakeFiles/gtest.dir/all
 
@@ -634,7 +704,7 @@ clean: gtest/CMakeFiles/gtest.dir/clean
 gtest/CMakeFiles/gtest_main.dir/all: gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles  3
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles  5
 	@echo "Built target gtest_main"
 .PHONY : gtest/CMakeFiles/gtest_main.dir/all
 

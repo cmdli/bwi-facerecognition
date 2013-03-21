@@ -1,5 +1,7 @@
+/nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles/ORBDetector.dir
 /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles/ROSBUILD_genmsg_cpp.dir
 /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles/ROSBUILD_gensrv_cpp.dir
+/nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles/SIFTDetector.dir
 /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles/clean_test_results.dir
 /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/CMakeFiles/doxygen.dir
 /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/gtest/CMakeFiles/gtest.dir

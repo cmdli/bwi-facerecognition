@@ -92,7 +92,7 @@ catch (zxing::Exception& e)
 
   cv_bridge::CvImagePtr image = cv_bridge::toCvCopy(msg);
   cv::Mat cvImage = image->image;
-  cv::Mat cvOutput;
+  cv::Mat cvOutput; 
 
   cv::cvtColor(cvImage, cvOutput, CV_RGB2GRAY);
 
