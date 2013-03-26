@@ -1,4 +1,10 @@
 
+#include <ros/ros.h>
+
+#include <image_transport/image_transport.h>
+#include <cv_bridge/cv_bridge.h>
+#include <opencv/cv.h>
+
 #define INPUT_TOPIC "camera/rgb/image_color"
 #define OUTPUT_TOPIC "detector/blurred"
 

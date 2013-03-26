@@ -12,7 +12,7 @@
 
 
 #define INPUT_TOPIC "camera/rgb/image_color"
-#define OUTPUT_TOPIC "detector/blurred"
+#define OUTPUT_TOPIC "detector/SIFT"
 
 image_transport::Publisher publisher;
 
@@ -28,8 +28,8 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
   cv::Mat cvOutput; 
 
   vector<KeyPoint> points;
-  SIFT sift;
-  sift(cvImage, cvImage, points, noArray());
+  Ptr<FeatureDetector> detector = FeatureDetector::create("SIFT");
+  detector->detect(cvImage, points);
 
   drawKeypoints(cvImage, points, cvImage);
   

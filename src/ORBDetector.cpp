@@ -10,7 +10,7 @@
 #include "opencv2/features2d/features2d.hpp"
 
 #define INPUT_TOPIC "camera/rgb/image_color"
-#define OUTPUT_TOPIC "detector/blurred"
+#define OUTPUT_TOPIC "detector/ORB"
 
 image_transport::Publisher publisher;
 
@@ -25,18 +25,13 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
   Mat cvImage = image->image;
   Mat cvOutput; 
 
-  vector<KeyPoint> keypoints;
+  vector<KeyPoint> points;
+  Ptr<FeatureDetector> detector = FeatureDetector::create("ORB");
+  detector->detect(cvImage, points);
 
-  cvtColor(cvImage, cvImage, CV_RGB2GRAY);
-
-  ORB orb;
-
-  orb(cvImage, noArray(), keypoints, noArray());
-
-  drawKeypoints(cvImage, keypoints, cvImage);
+  drawKeypoints(cvImage, points, cvImage);
   
   //Publish image
-  image->encoding = "mono8";
   publisher.publish(image->toImageMsg());
 
 }

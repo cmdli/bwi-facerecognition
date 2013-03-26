@@ -137,6 +137,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named BlurImage
+
+# Build rule for target.
+BlurImage: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 BlurImage
+.PHONY : BlurImage
+
+# fast build rule for target.
+BlurImage/fast:
+	$(MAKE) -f CMakeFiles/BlurImage.dir/build.make CMakeFiles/BlurImage.dir/build
+.PHONY : BlurImage/fast
+
+#=============================================================================
+# Target rules for targets named ComputeGradients
+
+# Build rule for target.
+ComputeGradients: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ComputeGradients
+.PHONY : ComputeGradients
+
+# fast build rule for target.
+ComputeGradients/fast:
+	$(MAKE) -f CMakeFiles/ComputeGradients.dir/build.make CMakeFiles/ComputeGradients.dir/build
+.PHONY : ComputeGradients/fast
+
+#=============================================================================
 # Target rules for targets named ORBDetector
 
 # Build rule for target.
@@ -187,6 +213,19 @@ SIFTDetector: cmake_check_build_system
 SIFTDetector/fast:
 	$(MAKE) -f CMakeFiles/SIFTDetector.dir/build.make CMakeFiles/SIFTDetector.dir/build
 .PHONY : SIFTDetector/fast
+
+#=============================================================================
+# Target rules for targets named SimpleBlobDetector
+
+# Build rule for target.
+SimpleBlobDetector: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SimpleBlobDetector
+.PHONY : SimpleBlobDetector
+
+# fast build rule for target.
+SimpleBlobDetector/fast:
+	$(MAKE) -f CMakeFiles/SimpleBlobDetector.dir/build.make CMakeFiles/SimpleBlobDetector.dir/build
+.PHONY : SimpleBlobDetector/fast
 
 #=============================================================================
 # Target rules for targets named clean_test_results
@@ -409,6 +448,54 @@ gtest_main/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+src/BlurImage.o: src/BlurImage.cpp.o
+.PHONY : src/BlurImage.o
+
+# target to build an object file
+src/BlurImage.cpp.o:
+	$(MAKE) -f CMakeFiles/BlurImage.dir/build.make CMakeFiles/BlurImage.dir/src/BlurImage.cpp.o
+.PHONY : src/BlurImage.cpp.o
+
+src/BlurImage.i: src/BlurImage.cpp.i
+.PHONY : src/BlurImage.i
+
+# target to preprocess a source file
+src/BlurImage.cpp.i:
+	$(MAKE) -f CMakeFiles/BlurImage.dir/build.make CMakeFiles/BlurImage.dir/src/BlurImage.cpp.i
+.PHONY : src/BlurImage.cpp.i
+
+src/BlurImage.s: src/BlurImage.cpp.s
+.PHONY : src/BlurImage.s
+
+# target to generate assembly for a file
+src/BlurImage.cpp.s:
+	$(MAKE) -f CMakeFiles/BlurImage.dir/build.make CMakeFiles/BlurImage.dir/src/BlurImage.cpp.s
+.PHONY : src/BlurImage.cpp.s
+
+src/ComputeGradients.o: src/ComputeGradients.cpp.o
+.PHONY : src/ComputeGradients.o
+
+# target to build an object file
+src/ComputeGradients.cpp.o:
+	$(MAKE) -f CMakeFiles/ComputeGradients.dir/build.make CMakeFiles/ComputeGradients.dir/src/ComputeGradients.cpp.o
+.PHONY : src/ComputeGradients.cpp.o
+
+src/ComputeGradients.i: src/ComputeGradients.cpp.i
+.PHONY : src/ComputeGradients.i
+
+# target to preprocess a source file
+src/ComputeGradients.cpp.i:
+	$(MAKE) -f CMakeFiles/ComputeGradients.dir/build.make CMakeFiles/ComputeGradients.dir/src/ComputeGradients.cpp.i
+.PHONY : src/ComputeGradients.cpp.i
+
+src/ComputeGradients.s: src/ComputeGradients.cpp.s
+.PHONY : src/ComputeGradients.s
+
+# target to generate assembly for a file
+src/ComputeGradients.cpp.s:
+	$(MAKE) -f CMakeFiles/ComputeGradients.dir/build.make CMakeFiles/ComputeGradients.dir/src/ComputeGradients.cpp.s
+.PHONY : src/ComputeGradients.cpp.s
+
 src/ORBDetector.o: src/ORBDetector.cpp.o
 .PHONY : src/ORBDetector.o
 
@@ -457,6 +544,30 @@ src/SIFTDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/SIFTDetector.dir/build.make CMakeFiles/SIFTDetector.dir/src/SIFTDetector.cpp.s
 .PHONY : src/SIFTDetector.cpp.s
 
+src/SimpleBlobDetector.o: src/SimpleBlobDetector.cpp.o
+.PHONY : src/SimpleBlobDetector.o
+
+# target to build an object file
+src/SimpleBlobDetector.cpp.o:
+	$(MAKE) -f CMakeFiles/SimpleBlobDetector.dir/build.make CMakeFiles/SimpleBlobDetector.dir/src/SimpleBlobDetector.cpp.o
+.PHONY : src/SimpleBlobDetector.cpp.o
+
+src/SimpleBlobDetector.i: src/SimpleBlobDetector.cpp.i
+.PHONY : src/SimpleBlobDetector.i
+
+# target to preprocess a source file
+src/SimpleBlobDetector.cpp.i:
+	$(MAKE) -f CMakeFiles/SimpleBlobDetector.dir/build.make CMakeFiles/SimpleBlobDetector.dir/src/SimpleBlobDetector.cpp.i
+.PHONY : src/SimpleBlobDetector.cpp.i
+
+src/SimpleBlobDetector.s: src/SimpleBlobDetector.cpp.s
+.PHONY : src/SimpleBlobDetector.s
+
+# target to generate assembly for a file
+src/SimpleBlobDetector.cpp.s:
+	$(MAKE) -f CMakeFiles/SimpleBlobDetector.dir/build.make CMakeFiles/SimpleBlobDetector.dir/src/SimpleBlobDetector.cpp.s
+.PHONY : src/SimpleBlobDetector.cpp.s
+
 src/test_blur.o: src/test_blur.cpp.o
 .PHONY : src/test_blur.o
 
@@ -487,10 +598,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... BlurImage"
+	@echo "... ComputeGradients"
 	@echo "... ORBDetector"
 	@echo "... ROSBUILD_genmsg_cpp"
 	@echo "... ROSBUILD_gensrv_cpp"
 	@echo "... SIFTDetector"
+	@echo "... SimpleBlobDetector"
 	@echo "... clean_test_results"
 	@echo "... doxygen"
 	@echo "... edit_cache"
@@ -514,12 +628,21 @@ help:
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... src/BlurImage.o"
+	@echo "... src/BlurImage.i"
+	@echo "... src/BlurImage.s"
+	@echo "... src/ComputeGradients.o"
+	@echo "... src/ComputeGradients.i"
+	@echo "... src/ComputeGradients.s"
 	@echo "... src/ORBDetector.o"
 	@echo "... src/ORBDetector.i"
 	@echo "... src/ORBDetector.s"
 	@echo "... src/SIFTDetector.o"
 	@echo "... src/SIFTDetector.i"
 	@echo "... src/SIFTDetector.s"
+	@echo "... src/SimpleBlobDetector.o"
+	@echo "... src/SimpleBlobDetector.i"
+	@echo "... src/SimpleBlobDetector.s"
 	@echo "... src/test_blur.o"
 	@echo "... src/test_blur.i"
 	@echo "... src/test_blur.s"

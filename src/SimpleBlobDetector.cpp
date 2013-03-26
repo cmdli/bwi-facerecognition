@@ -7,12 +7,16 @@
 #include <vector>
 
 #include "opencv2/core/core.hpp"
+#include "opencv2/features2d/features2d.hpp"
+#include "opencv2/nonfree/nonfree.hpp"
+
 
 #define INPUT_TOPIC "camera/rgb/image_color"
-#define OUTPUT_TOPIC "detector/blurred"
+#define OUTPUT_TOPIC "detector/SIFT"
 
 image_transport::Publisher publisher;
 
+using namespace std;
 using namespace cv;
 
 void callback(const sensor_msgs::ImageConstPtr &msg)
@@ -23,7 +27,11 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
   cv::Mat cvImage = image->image;
   cv::Mat cvOutput; 
 
-  blur(cvImage, cvImage, Size(5,5));
+  vector<KeyPoint> points;
+  Ptr<FeatureDetector> detector = FeatureDetector::create("SimpleBlob");
+  detector->detect(cvImage, points);
+
+  drawKeypoints(cvImage, points, cvImage);
   
   //Publish image
   publisher.publish(image->toImageMsg());

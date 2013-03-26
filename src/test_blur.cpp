@@ -1,5 +1,6 @@
 
 #include <ros/ros.h>
+#include <std_msgs/String.h>
 
 #include <image_transport/image_transport.h>
 #include <cv_bridge/cv_bridge.h>
@@ -16,79 +17,82 @@ using namespace std;
 using namespace zxing;
 using namespace zxing::qrcode;
 
+
+ros::Publisher publish;
+
 void blurCB(const sensor_msgs::ImageConstPtr &msg)
 {
  
  
   //A buffer containing an image. In your code, this would be an image from your camera. In this 
-     // example, it's just an array containing the code for "Hello!". 
+  // example, it's just an array containing the code for "Hello!". 
   /*try
-	{
-	  /*uint8_t buffer[] = 
+    {
+    /*uint8_t buffer[] = 
     { 
-      255, 255, 255, 255, 0, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 
-      255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 
-      255,  0 , 0, 0, 0, 0, 0,  0 , 0, 255,  0 , 255,  0 , 255, 255,  0 , 255, 255, 255, 255, 255,  0 , 255, 
-      255,  0 , 0,  0 ,  0 ,  0 , 0,  0 , 255, 255,  0 ,  0 , 255, 255, 255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255, 
-      255,  0 , 0,  0 ,  0 ,  0 , 0,  0 , 255, 255,  0 ,  0 ,  0 , 255, 255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255, 
-      255,  0 , 0,  0 ,  0 ,  0 , 0,  0 , 255, 255, 255,  0 , 255,  0 , 255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255, 
-      255,  0 , 0, 0, 0, 0, 0,  0 , 0, 255, 255, 255,  0 ,  0 , 255,  0 , 255, 255, 255, 255, 255,  0 , 255, 
-      255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 , 255,  0 , 255,  0 , 255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 
-      255, 255, 255, 255, 255, 0, 0, 0, 255,  0 ,  0 ,  0 ,  0 ,  0 , 255, 255, 255, 255, 255, 255, 255, 255, 255, 
-      255,  0 ,  0 , 255,  0 ,  0 , 255,  0 , 255, 255,  0 ,  0 , 255,  0 , 255,  0 , 255, 255, 255, 255, 255,  0 , 255, 
-      255,  0 ,  0 ,  0 ,  0 ,  0 , 255, 255,  0 , 255, 255,  0 , 255,  0 , 255,  0 , 255,  0 ,  0 ,  0 , 255, 255, 255, 
-      255, 255, 255, 255, 255, 255, 255,  0 , 255,  0 ,  0 ,  0 , 255, 255,  0 ,  0 , 255,  0 , 255,  0 ,  0 ,  0 , 255, 
-      255, 255, 255,  0 ,  0 , 255, 255, 255,  0 ,  0 ,  0 , 255,  0 , 255, 255, 255, 255, 255, 255,  0 , 255, 255, 255, 
-      255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 255,  0 , 255, 255, 255, 255,  0 , 255, 255,  0 , 255,  0 , 255, 255, 
-      255, 255, 255, 255, 255, 255, 255, 255, 255,  0 ,  0 , 255,  0 ,  0 , 255, 255, 255, 255,  0 , 255,  0 ,  0 , 255, 
-      255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 255, 255,  0 , 255,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 , 255, 255, 255, 
-      255,  0 , 255, 255, 255, 255, 255,  0 , 255, 255,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 ,  0 ,  0 ,  0 , 255, 255, 255, 
-      255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255,  0 , 255, 255,  0 ,  0 , 255,  0 ,  0 , 255,  0 , 255,  0 ,  0 , 255, 
-      255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255,  0 , 255,  0 ,  0 ,  0 , 255, 255, 255, 255, 255, 255, 255, 255, 255, 
-      255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255, 255,  0 ,  0 , 255, 255, 255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 
-      255,  0 , 255, 255, 255, 255, 255,  0 , 255,  0 , 255,  0 , 255, 255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 
-      255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 , 255,  0 ,  0 , 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 
-      255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
+    255, 255, 255, 255, 0, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+    255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 
+    255,  0 , 0, 0, 0, 0, 0,  0 , 0, 255,  0 , 255,  0 , 255, 255,  0 , 255, 255, 255, 255, 255,  0 , 255, 
+    255,  0 , 0,  0 ,  0 ,  0 , 0,  0 , 255, 255,  0 ,  0 , 255, 255, 255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255, 
+    255,  0 , 0,  0 ,  0 ,  0 , 0,  0 , 255, 255,  0 ,  0 ,  0 , 255, 255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255, 
+    255,  0 , 0,  0 ,  0 ,  0 , 0,  0 , 255, 255, 255,  0 , 255,  0 , 255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255, 
+    255,  0 , 0, 0, 0, 0, 0,  0 , 0, 255, 255, 255,  0 ,  0 , 255,  0 , 255, 255, 255, 255, 255,  0 , 255, 
+    255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 , 255,  0 , 255,  0 , 255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 
+    255, 255, 255, 255, 255, 0, 0, 0, 255,  0 ,  0 ,  0 ,  0 ,  0 , 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+    255,  0 ,  0 , 255,  0 ,  0 , 255,  0 , 255, 255,  0 ,  0 , 255,  0 , 255,  0 , 255, 255, 255, 255, 255,  0 , 255, 
+    255,  0 ,  0 ,  0 ,  0 ,  0 , 255, 255,  0 , 255, 255,  0 , 255,  0 , 255,  0 , 255,  0 ,  0 ,  0 , 255, 255, 255, 
+    255, 255, 255, 255, 255, 255, 255,  0 , 255,  0 ,  0 ,  0 , 255, 255,  0 ,  0 , 255,  0 , 255,  0 ,  0 ,  0 , 255, 
+    255, 255, 255,  0 ,  0 , 255, 255, 255,  0 ,  0 ,  0 , 255,  0 , 255, 255, 255, 255, 255, 255,  0 , 255, 255, 255, 
+    255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 255,  0 , 255, 255, 255, 255,  0 , 255, 255,  0 , 255,  0 , 255, 255, 
+    255, 255, 255, 255, 255, 255, 255, 255, 255,  0 ,  0 , 255,  0 ,  0 , 255, 255, 255, 255,  0 , 255,  0 ,  0 , 255, 
+    255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 255, 255,  0 , 255,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 , 255, 255, 255, 
+    255,  0 , 255, 255, 255, 255, 255,  0 , 255, 255,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 ,  0 ,  0 ,  0 , 255, 255, 255, 
+    255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255,  0 , 255, 255,  0 ,  0 , 255,  0 ,  0 , 255,  0 , 255,  0 ,  0 , 255, 
+    255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255,  0 , 255,  0 ,  0 ,  0 , 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+    255,  0 , 255,  0 ,  0 ,  0 , 255,  0 , 255, 255,  0 ,  0 , 255, 255, 255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 
+    255,  0 , 255, 255, 255, 255, 255,  0 , 255,  0 , 255,  0 , 255, 255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255, 
+    255,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 255,  0 , 255,  0 ,  0 , 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
     }; 
-  int width = 23; 
-  int height = 23;*/
+    int width = 23; 
+    int height = 23;*/
   /*const sensor_msgs::Image img = *msg;
 
-  cv_bridge::CvImagePtr cvimageptr = cv_bridge::toCvCopy(msg);
-  cv::Mat cvImage = cvimageptr->image;
-  cv::Mat cvOutput;
+    cv_bridge::CvImagePtr cvimageptr = cv_bridge::toCvCopy(msg);
+    cv::Mat cvImage = cvimageptr->image;
+    cv::Mat cvOutput;
 
-  cv::cvtColor(cvImage, cvOutput, CV_RGB2GRAY);
+    cv::cvtColor(cvImage, cvOutput, CV_RGB2GRAY);
 
-  cv::Size size = cvOutput.size();
-  unsigned char *buffer = cvOutput.ptr();
-  int width = size.width;
-  int height = size.height;
+    cv::Size size = cvOutput.size();
+    unsigned char *buffer = cvOutput.ptr();
+    int width = size.width;
+    int height = size.height;
  
-  // Convert the buffer to something that the library understands. 
-  Ref<LuminanceSource> source (new GreyscaleLuminanceSource(buffer,width,height,0,0,width,height)); 
+    // Convert the buffer to something that the library understands. 
+    Ref<LuminanceSource> source (new GreyscaleLuminanceSource(buffer,width,height,0,0,width,height)); 
  
-  // Turn it into a binary image. 
-  Ref<Binarizer> binarizer (new GlobalHistogramBinarizer(source)); 
-  Ref<BinaryBitmap> image(new BinaryBitmap(binarizer));
+    // Turn it into a binary image. 
+    Ref<Binarizer> binarizer (new GlobalHistogramBinarizer(source)); 
+    Ref<BinaryBitmap> image(new BinaryBitmap(binarizer));
  
-  // Tell the decoder to try as hard as possible. 
-  DecodeHints hints(DecodeHints::DEFAULT_HINT); 
-  hints.setTryHarder(true); 
+    // Tell the decoder to try as hard as possible. 
+    DecodeHints hints(DecodeHints::DEFAULT_HINT); 
+    hints.setTryHarder(true); 
  
-  // Perform the decoding. 
-  QRCodeReader reader;
-  Ref<Result> result(reader.decode(image, hints));
+    // Perform the decoding. 
+    QRCodeReader reader;
+    Ref<Result> result(reader.decode(image, hints));
  
-  // Output the result. 
-  cout << result->getText()->getText() << endl;
- }
-catch (zxing::Exception& e) 
-	{
+    // Output the result. 
+    cout << result->getText()->getText() << endl;
+    }
+    catch (zxing::Exception& e) 
+    {
     cerr << "Error: " << e.what() << endl;
-  }*/
+    }*/
 
-    const sensor_msgs::Image img = *msg;
+  const sensor_msgs::Image img = *msg;
 
   cv_bridge::CvImagePtr image = cv_bridge::toCvCopy(msg);
   cv::Mat cvImage = image->image;
@@ -111,12 +115,17 @@ catch (zxing::Exception& e)
     Ref<Result> result(reader.decode(bitmap,hints));
     cout << "Detected QR Code!" << endl;
     cout << "Result: " << result->getText()->getText() << endl;
-  }
-  catch(Exception &e) {
-    cout << "No QR Code" << endl;
-  }
 
-  cout << "-----------------------------------------------------" << endl;
+    std_msgs::String msg;
+    msg.data = result->getText()->getText();
+
+  publish.publish(msg);
+}
+catch(Exception &e) {
+  cout << "No QR Code" << endl;
+ }
+
+cout << "-----------------------------------------------------" << endl;
 }
 
 int main( int argc, char** argv)
@@ -132,7 +141,7 @@ int main( int argc, char** argv)
 		 1,
 		 blurCB);
 
-  ros::Rate loop_rate(10);
+  publish = n.advertise<std_msgs::String>("detector/qr", 1000);
 
   ros::spin();
 

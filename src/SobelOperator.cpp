@@ -4,12 +4,18 @@
 #include <image_transport/image_transport.h>
 #include <cv_bridge/cv_bridge.h>
 #include <opencv/cv.h>
-#include <vector>
 
-#include "opencv2/core/core.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
 
 #define INPUT_TOPIC "camera/rgb/image_color"
-#define OUTPUT_TOPIC "detector/blurred"
+#define OUTPUT_TOPIC "detector/sobel"
+#define NODE "SobelOperator"
+
+#define DST_DEPTH -1
+#define XORDER 1
+#define YORDER 1
+#define KERNEL_SIZE 5
 
 image_transport::Publisher publisher;
 
@@ -21,9 +27,15 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
   const sensor_msgs::Image img = *msg;
   cv_bridge::CvImagePtr image = cv_bridge::toCvCopy(msg);
   cv::Mat cvImage = image->image;
-  cv::Mat cvOutput; 
+  cv::Mat cvOutput, absOutput; 
 
-  blur(cvImage, cvImage, Size(5,5));
+  cvtColor(cvImage, cvOutput, CV_RGB2GRAY);
+
+  Sobel(cvOutput, cvOutput, DST_DEPTH, XORDER, YORDER, KERNEL_SIZE);
+  convertScaleAbs(cvOutput, absOutput);
+
+  image->image = absOutput;
+  image->encoding = "mono8";
   
   //Publish image
   publisher.publish(image->toImageMsg());
@@ -34,7 +46,7 @@ int main( int argc, char** argv)
 {
 
   //Init ROS
-  ros::init(argc, argv, "test_blur");
+  ros::init(argc, argv, NODE);
   ros::NodeHandle n;
 
 
