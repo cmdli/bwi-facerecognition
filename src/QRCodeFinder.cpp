@@ -45,10 +45,11 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
     DecodeHints hints(DecodeHints::BARCODEFORMAT_QR_CODE_HINT); 
     hints.setTryHarder(true); 
 
-    FinderPatternFinder finder(bitmap->getBlackMatrix(), hints.getResultPointCallback());
+    Ref<BitMatrix> image(bitmap->getBlackMatrix());
+    FinderPatternFinder finder(image, hints.getResultPointCallback());
     Ref<FinderPatternInfo> info(finder.find(hints));
 
-    Ref<FinderPattern> topLeft = info->getTopLeft();
+    Ref<FinderPattern> topLeft(info->getTopLeft());
     circle(cvImage, Point(topLeft->getX(), topLeft->getY()), 3, Scalar(255,0,0));
 
   }

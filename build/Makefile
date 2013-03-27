@@ -163,6 +163,19 @@ ComputeGradients/fast:
 .PHONY : ComputeGradients/fast
 
 #=============================================================================
+# Target rules for targets named FaceDetector
+
+# Build rule for target.
+FaceDetector: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 FaceDetector
+.PHONY : FaceDetector
+
+# fast build rule for target.
+FaceDetector/fast:
+	$(MAKE) -f CMakeFiles/FaceDetector.dir/build.make CMakeFiles/FaceDetector.dir/build
+.PHONY : FaceDetector/fast
+
+#=============================================================================
 # Target rules for targets named ORBDetector
 
 # Build rule for target.
@@ -509,6 +522,30 @@ src/ComputeGradients.cpp.s:
 	$(MAKE) -f CMakeFiles/ComputeGradients.dir/build.make CMakeFiles/ComputeGradients.dir/src/ComputeGradients.cpp.s
 .PHONY : src/ComputeGradients.cpp.s
 
+src/FaceDetector.o: src/FaceDetector.cpp.o
+.PHONY : src/FaceDetector.o
+
+# target to build an object file
+src/FaceDetector.cpp.o:
+	$(MAKE) -f CMakeFiles/FaceDetector.dir/build.make CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o
+.PHONY : src/FaceDetector.cpp.o
+
+src/FaceDetector.i: src/FaceDetector.cpp.i
+.PHONY : src/FaceDetector.i
+
+# target to preprocess a source file
+src/FaceDetector.cpp.i:
+	$(MAKE) -f CMakeFiles/FaceDetector.dir/build.make CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.i
+.PHONY : src/FaceDetector.cpp.i
+
+src/FaceDetector.s: src/FaceDetector.cpp.s
+.PHONY : src/FaceDetector.s
+
+# target to generate assembly for a file
+src/FaceDetector.cpp.s:
+	$(MAKE) -f CMakeFiles/FaceDetector.dir/build.make CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.s
+.PHONY : src/FaceDetector.cpp.s
+
 src/ORBDetector.o: src/ORBDetector.cpp.o
 .PHONY : src/ORBDetector.o
 
@@ -637,6 +674,7 @@ help:
 	@echo "... depend"
 	@echo "... BlurImage"
 	@echo "... ComputeGradients"
+	@echo "... FaceDetector"
 	@echo "... ORBDetector"
 	@echo "... QRCodeFinder"
 	@echo "... ROSBUILD_genmsg_cpp"
@@ -672,6 +710,9 @@ help:
 	@echo "... src/ComputeGradients.o"
 	@echo "... src/ComputeGradients.i"
 	@echo "... src/ComputeGradients.s"
+	@echo "... src/FaceDetector.o"
+	@echo "... src/FaceDetector.i"
+	@echo "... src/FaceDetector.s"
 	@echo "... src/ORBDetector.o"
 	@echo "... src/ORBDetector.i"
 	@echo "... src/ORBDetector.s"
