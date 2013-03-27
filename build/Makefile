@@ -176,6 +176,19 @@ ORBDetector/fast:
 .PHONY : ORBDetector/fast
 
 #=============================================================================
+# Target rules for targets named QRCodeFinder
+
+# Build rule for target.
+QRCodeFinder: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 QRCodeFinder
+.PHONY : QRCodeFinder
+
+# fast build rule for target.
+QRCodeFinder/fast:
+	$(MAKE) -f CMakeFiles/QRCodeFinder.dir/build.make CMakeFiles/QRCodeFinder.dir/build
+.PHONY : QRCodeFinder/fast
+
+#=============================================================================
 # Target rules for targets named ROSBUILD_genmsg_cpp
 
 # Build rule for target.
@@ -520,6 +533,30 @@ src/ORBDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/ORBDetector.dir/build.make CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.s
 .PHONY : src/ORBDetector.cpp.s
 
+src/QRCodeFinder.o: src/QRCodeFinder.cpp.o
+.PHONY : src/QRCodeFinder.o
+
+# target to build an object file
+src/QRCodeFinder.cpp.o:
+	$(MAKE) -f CMakeFiles/QRCodeFinder.dir/build.make CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.o
+.PHONY : src/QRCodeFinder.cpp.o
+
+src/QRCodeFinder.i: src/QRCodeFinder.cpp.i
+.PHONY : src/QRCodeFinder.i
+
+# target to preprocess a source file
+src/QRCodeFinder.cpp.i:
+	$(MAKE) -f CMakeFiles/QRCodeFinder.dir/build.make CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.i
+.PHONY : src/QRCodeFinder.cpp.i
+
+src/QRCodeFinder.s: src/QRCodeFinder.cpp.s
+.PHONY : src/QRCodeFinder.s
+
+# target to generate assembly for a file
+src/QRCodeFinder.cpp.s:
+	$(MAKE) -f CMakeFiles/QRCodeFinder.dir/build.make CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.s
+.PHONY : src/QRCodeFinder.cpp.s
+
 src/SIFTDetector.o: src/SIFTDetector.cpp.o
 .PHONY : src/SIFTDetector.o
 
@@ -601,6 +638,7 @@ help:
 	@echo "... BlurImage"
 	@echo "... ComputeGradients"
 	@echo "... ORBDetector"
+	@echo "... QRCodeFinder"
 	@echo "... ROSBUILD_genmsg_cpp"
 	@echo "... ROSBUILD_gensrv_cpp"
 	@echo "... SIFTDetector"
@@ -637,6 +675,9 @@ help:
 	@echo "... src/ORBDetector.o"
 	@echo "... src/ORBDetector.i"
 	@echo "... src/ORBDetector.s"
+	@echo "... src/QRCodeFinder.o"
+	@echo "... src/QRCodeFinder.i"
+	@echo "... src/QRCodeFinder.s"
 	@echo "... src/SIFTDetector.o"
 	@echo "... src/SIFTDetector.i"
 	@echo "... src/SIFTDetector.s"

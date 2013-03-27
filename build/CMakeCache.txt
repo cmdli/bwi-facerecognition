@@ -249,7 +249,7 @@ _CATKIN_GTEST_INCLUDE:FILEPATH=_CATKIN_GTEST_INCLUDE-NOTFOUND
 _CATKIN_GTEST_SRC:FILEPATH=/usr/src/gtest/src/gtest.cc
 
 //Path to a file.
-_file_name:FILEPATH=/nishome/cmdli/ros/rosbuild_ws/class-code/friproject/src/SimpleBlobDetector.cpp
+_file_name:FILEPATH=/nishome/cmdli/ros/rosbuild_ws/class-code/friproject/src/QRCodeFinder.cpp
 
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/groovy/share/catkin/cmake

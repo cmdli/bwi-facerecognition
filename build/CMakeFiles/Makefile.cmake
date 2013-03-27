@@ -129,6 +129,7 @@ SET(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/BlurImage.dir/DependInfo.cmake"
   "CMakeFiles/ComputeGradients.dir/DependInfo.cmake"
   "CMakeFiles/ORBDetector.dir/DependInfo.cmake"
+  "CMakeFiles/QRCodeFinder.dir/DependInfo.cmake"
   "CMakeFiles/ROSBUILD_genmsg_cpp.dir/DependInfo.cmake"
   "CMakeFiles/ROSBUILD_gensrv_cpp.dir/DependInfo.cmake"
   "CMakeFiles/SIFTDetector.dir/DependInfo.cmake"
