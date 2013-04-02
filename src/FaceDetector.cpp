@@ -5,12 +5,14 @@
 #include <cv_bridge/cv_bridge.h>
 #include <opencv/cv.h>
 
+#include <iostream>
+
  #include <opencv2/objdetect/objdetect.hpp>
  #include <opencv2/imgproc/imgproc.hpp>
 
 #define INPUT_TOPIC "camera/rgb/image_color"
 #define OUTPUT_TOPIC "detector/faces"
-#define FACE_CASCADE_FILE "haarcascade_frontalface_alt.xml"
+#define FACE_CASCADE_FILE "haarcascade_frontalface_default.xml"
 
 image_transport::Publisher publisher;
 
@@ -31,16 +33,25 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
 
   vector<Rect> faceRects;
 
-  faces.detectMultiScale( cvOutput, faceRects, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, Size(30, 30) );
+  faces.detectMultiScale( cvOutput, faceRects);
 
   for(int i = 0; i < faceRects.size(); i++) {
     rectangle( cvOutput, faceRects[i], Scalar(255,0,0));
+    float x1 = faceRects[i].x;
+    float x2 = x1 + faceRects[i].width;
+    float y1 = faceRects[i].y;
+    float y2 = y1 + faceRects[i].height;
+    Mat subimg = cvOutput(Range(x1,y1), Range(x2,y2));
+    image->image = subimg;
+    image->encoding = "mono8";
+    publisher.publish(image->toImageMsg());
   }
   
-  image->image = cvOutput;
+  /*  image->image = cvOutput;
+  image->encoding = "mono8";
 
   //Publish image
-  publisher.publish(image->toImageMsg());
+  publisher.publish(image->toImageMsg());*/
 
 }
 
