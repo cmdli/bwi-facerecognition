@@ -36,10 +36,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fri/ros/rosbuild_ws/class-code/friproject
+CMAKE_SOURCE_DIR = /nishome/cmdli/ros/rosbuild_ws/class-code/friproject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fri/ros/rosbuild_ws/class-code/friproject
+CMAKE_BINARY_DIR = /nishome/cmdli/ros/rosbuild_ws/class-code/friproject
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -107,9 +107,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fri/ros/rosbuild_ws/class-code/friproject/CMakeFiles /home/fri/ros/rosbuild_ws/class-code/friproject/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/CMakeFiles /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fri/ros/rosbuild_ws/class-code/friproject/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -187,6 +187,19 @@ ORBDetector: cmake_check_build_system
 ORBDetector/fast:
 	$(MAKE) -f CMakeFiles/ORBDetector.dir/build.make CMakeFiles/ORBDetector.dir/build
 .PHONY : ORBDetector/fast
+
+#=============================================================================
+# Target rules for targets named PersonFollower
+
+# Build rule for target.
+PersonFollower: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PersonFollower
+.PHONY : PersonFollower
+
+# fast build rule for target.
+PersonFollower/fast:
+	$(MAKE) -f CMakeFiles/PersonFollower.dir/build.make CMakeFiles/PersonFollower.dir/build
+.PHONY : PersonFollower/fast
 
 #=============================================================================
 # Target rules for targets named QRCodeFinder
@@ -570,6 +583,30 @@ src/ORBDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/ORBDetector.dir/build.make CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.s
 .PHONY : src/ORBDetector.cpp.s
 
+src/PersonFollower.o: src/PersonFollower.cpp.o
+.PHONY : src/PersonFollower.o
+
+# target to build an object file
+src/PersonFollower.cpp.o:
+	$(MAKE) -f CMakeFiles/PersonFollower.dir/build.make CMakeFiles/PersonFollower.dir/src/PersonFollower.cpp.o
+.PHONY : src/PersonFollower.cpp.o
+
+src/PersonFollower.i: src/PersonFollower.cpp.i
+.PHONY : src/PersonFollower.i
+
+# target to preprocess a source file
+src/PersonFollower.cpp.i:
+	$(MAKE) -f CMakeFiles/PersonFollower.dir/build.make CMakeFiles/PersonFollower.dir/src/PersonFollower.cpp.i
+.PHONY : src/PersonFollower.cpp.i
+
+src/PersonFollower.s: src/PersonFollower.cpp.s
+.PHONY : src/PersonFollower.s
+
+# target to generate assembly for a file
+src/PersonFollower.cpp.s:
+	$(MAKE) -f CMakeFiles/PersonFollower.dir/build.make CMakeFiles/PersonFollower.dir/src/PersonFollower.cpp.s
+.PHONY : src/PersonFollower.cpp.s
+
 src/QRCodeFinder.o: src/QRCodeFinder.cpp.o
 .PHONY : src/QRCodeFinder.o
 
@@ -676,6 +713,7 @@ help:
 	@echo "... ComputeGradients"
 	@echo "... FaceDetector"
 	@echo "... ORBDetector"
+	@echo "... PersonFollower"
 	@echo "... QRCodeFinder"
 	@echo "... ROSBUILD_genmsg_cpp"
 	@echo "... ROSBUILD_gensrv_cpp"
@@ -716,6 +754,9 @@ help:
 	@echo "... src/ORBDetector.o"
 	@echo "... src/ORBDetector.i"
 	@echo "... src/ORBDetector.s"
+	@echo "... src/PersonFollower.o"
+	@echo "... src/PersonFollower.i"
+	@echo "... src/PersonFollower.s"
 	@echo "... src/QRCodeFinder.o"
 	@echo "... src/QRCodeFinder.i"
 	@echo "... src/QRCodeFinder.s"

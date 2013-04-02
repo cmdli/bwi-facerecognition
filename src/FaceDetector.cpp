@@ -12,7 +12,7 @@
 
 #define INPUT_TOPIC "camera/rgb/image_color"
 #define OUTPUT_TOPIC "detector/faces"
-#define FACE_CASCADE_FILE "haarcascade_frontalface_default.xml"
+#define FACE_CASCADE_FILE "haarcascades/haarcascade_frontalface_default.xml"
 
 image_transport::Publisher publisher;
 
