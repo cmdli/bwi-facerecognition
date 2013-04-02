@@ -33,7 +33,7 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
 
   vector<Rect> faceRects;
 
-  faces.detectMultiScale( cvOutput, faceRects);
+  faces.detectMultiScale(cvOutput, faceRects);
 
   for(int i = 0; i < faceRects.size(); i++) {
     rectangle( cvOutput, faceRects[i], Scalar(255,0,0));
@@ -42,16 +42,16 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
     float y1 = faceRects[i].y;
     float y2 = y1 + faceRects[i].height;
     Mat subimg = cvOutput(Range(x1,y1), Range(x2,y2));
-    image->image = subimg;
+    /*image->image = subimg;
     image->encoding = "mono8";
-    publisher.publish(image->toImageMsg());
+    publisher.publish(image->toImageMsg());*/
   }
   
-  /*  image->image = cvOutput;
+  image->image = cvOutput;
   image->encoding = "mono8";
 
   //Publish image
-  publisher.publish(image->toImageMsg());*/
+  publisher.publish(image->toImageMsg());
 
 }
 
