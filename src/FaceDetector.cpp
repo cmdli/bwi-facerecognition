@@ -38,7 +38,6 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
     float x2 = x1 + faceRects[i].width;
     float y1 = faceRects[i].y;
     float y2 = y1 + faceRects[i].height;
-    Mat subimg = cvOutput(Range(x1,y1), Range(x2,y2));
   }
   
   image->image = cvOutput;
