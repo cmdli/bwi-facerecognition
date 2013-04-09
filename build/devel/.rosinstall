@@ -1,2 +1,0 @@
-- setup-file:
-    local-name: /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/build/devel/setup.sh
