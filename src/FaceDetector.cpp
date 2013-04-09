@@ -34,10 +34,6 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
 
   for(int i = 0; i < faceRects.size(); i++) {
     rectangle( cvOutput, faceRects[i], Scalar(255,0,0));
-    float x1 = faceRects[i].x;
-    float x2 = x1 + faceRects[i].width;
-    float y1 = faceRects[i].y;
-    float y2 = y1 + faceRects[i].height;
   }
   
   image->image = cvOutput;
@@ -50,6 +46,8 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
 
 int main( int argc, char** argv)
 {
+  cout << "Starting node" << endl;
+  cout.flush();
 
   //Init ROS
   ros::init(argc, argv, "test_blur");
@@ -68,7 +66,10 @@ int main( int argc, char** argv)
 
   string face_cascade_file;
 
-  n.getParam("face_cascade_file", face_cascade_file);
+  if(!n.getParam("/FaceDetector/face_cascade_file", face_cascade_file)) {
+    ROS_ERROR("Could not find 'face_cascade_file' parameter");
+    return 1;
+  }
 
   faces.load(face_cascade_file);
 
