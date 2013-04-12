@@ -33,7 +33,7 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
   faces.detectMultiScale(cvOutput, faceRects);
 
   for(int i = 0; i < faceRects.size(); i++) {
-    rectangle( cvOutput, faceRects[i], Scalar(255,0,0));
+    rectangle( cvOutput, faceRects[i], Scalar(0,255,0));
   }
   
   image->image = cvOutput;
