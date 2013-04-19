@@ -1,7 +1,8 @@
 
 <launch>
 	<node pkg="friproject" type="FaceDetector" name="FaceDetector">
-	      <remap from="input" to="camera/rgb/image_color" />
+	      <remap from="rgb_input" to="camera/rgb/image_color" />
+	      <remap from="depth_input" to="camera/depth/image" />
 	      <remap from="output" to="detector/faces" />
 	      <param name="face_cascade_file" value="$(find friproject)/haarcascades/haarcascade_frontalface_default.xml" />
 	      <param name="dummy" value="yes" />
