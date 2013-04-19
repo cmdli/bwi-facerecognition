@@ -176,6 +176,19 @@ FaceDetector/fast:
 .PHONY : FaceDetector/fast
 
 #=============================================================================
+# Target rules for targets named FaceRecognizer
+
+# Build rule for target.
+FaceRecognizer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 FaceRecognizer
+.PHONY : FaceRecognizer
+
+# fast build rule for target.
+FaceRecognizer/fast:
+	$(MAKE) -f CMakeFiles/FaceRecognizer.dir/build.make CMakeFiles/FaceRecognizer.dir/build
+.PHONY : FaceRecognizer/fast
+
+#=============================================================================
 # Target rules for targets named ORBDetector
 
 # Build rule for target.
@@ -572,6 +585,30 @@ src/FaceDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/FaceDetector.dir/build.make CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.s
 .PHONY : src/FaceDetector.cpp.s
 
+src/FaceRecognizer.o: src/FaceRecognizer.cpp.o
+.PHONY : src/FaceRecognizer.o
+
+# target to build an object file
+src/FaceRecognizer.cpp.o:
+	$(MAKE) -f CMakeFiles/FaceRecognizer.dir/build.make CMakeFiles/FaceRecognizer.dir/src/FaceRecognizer.cpp.o
+.PHONY : src/FaceRecognizer.cpp.o
+
+src/FaceRecognizer.i: src/FaceRecognizer.cpp.i
+.PHONY : src/FaceRecognizer.i
+
+# target to preprocess a source file
+src/FaceRecognizer.cpp.i:
+	$(MAKE) -f CMakeFiles/FaceRecognizer.dir/build.make CMakeFiles/FaceRecognizer.dir/src/FaceRecognizer.cpp.i
+.PHONY : src/FaceRecognizer.cpp.i
+
+src/FaceRecognizer.s: src/FaceRecognizer.cpp.s
+.PHONY : src/FaceRecognizer.s
+
+# target to generate assembly for a file
+src/FaceRecognizer.cpp.s:
+	$(MAKE) -f CMakeFiles/FaceRecognizer.dir/build.make CMakeFiles/FaceRecognizer.dir/src/FaceRecognizer.cpp.s
+.PHONY : src/FaceRecognizer.cpp.s
+
 src/ORBDetector.o: src/ORBDetector.cpp.o
 .PHONY : src/ORBDetector.o
 
@@ -749,6 +786,7 @@ help:
 	@echo "... BlurImage"
 	@echo "... ComputeGradients"
 	@echo "... FaceDetector"
+	@echo "... FaceRecognizer"
 	@echo "... ORBDetector"
 	@echo "... PersonFollower"
 	@echo "... QRCodeFinder"
@@ -789,6 +827,9 @@ help:
 	@echo "... src/FaceDetector.o"
 	@echo "... src/FaceDetector.i"
 	@echo "... src/FaceDetector.s"
+	@echo "... src/FaceRecognizer.o"
+	@echo "... src/FaceRecognizer.i"
+	@echo "... src/FaceRecognizer.s"
 	@echo "... src/ORBDetector.o"
 	@echo "... src/ORBDetector.i"
 	@echo "... src/ORBDetector.s"

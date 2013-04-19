@@ -1,0 +1,8 @@
+
+<launch>
+
+	<node pkg="friproject" type="FaceRecognizer" name="FaceRecognizer">
+	      <param name="csv_file" value="$(find friproject)/faces.csv" />
+	</node>
+
+</launch>
