@@ -1,7 +1,14 @@
 
+
 #include <ros/ros.h>
 
 #include <image_transport/image_transport.h>
+#include <message_filters/subscriber.h>
+#include <message_filters/synchronizer.h>
+#include <message_filters/sync_policies/approximate_time.h>
+#include <sensor_msgs/Image.h>
+#include <sensor_msgs/CameraInfo.h>
+
 #include <cv_bridge/cv_bridge.h>
 #include <opencv/cv.h>
 
@@ -30,6 +37,7 @@ using namespace cv;
 
 CascadeClassifier faces;
 
+<<<<<<< HEAD
 Ptr<FaceRecognizer> model;
 
 void train(string csv_file)
@@ -98,14 +106,25 @@ string recognizeFace(Mat image)
 }
 
 void callback(const sensor_msgs::ImageConstPtr &msg)
+=======
+void callback(const sensor_msgs::ImageConstPtr &rgbMsg, const sensor_msgs::ImageConstPtr &depthMsg)
+>>>>>>> 6f3e6e91ed599daecc349a26fd1f8d50b856a3ad
 {
 
 
   //Load image into OpenCV
-  const sensor_msgs::Image img = *msg;
-  cv_bridge::CvImagePtr image = cv_bridge::toCvCopy(msg);
+  const sensor_msgs::Image img = *rgbMsg;
+  cv_bridge::CvImagePtr image = cv_bridge::toCvCopy(rgbMsg);
   cv::Mat cvImage = image->image;
+<<<<<<< HEAD
   cv::Mat cvGray;
+=======
+ cv::Mat cvOutput;
+ cv_bridge::CvImagePtr depthImage = cv_bridge::toCvCopy(depthMsg);
+  cv::Mat cvDepth = depthImage->image;
+
+  //cvImage.mul(cvDepth);
+>>>>>>> 6f3e6e91ed599daecc349a26fd1f8d50b856a3ad
 
   cvtColor(cvImage, cvGray, CV_RGB2GRAY);
   cv::Mat cvOutput(cvGray);
@@ -115,6 +134,7 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
   faces.detectMultiScale(cvGray, faceRects);
 
   for(int i = 0; i < faceRects.size(); i++) {
+<<<<<<< HEAD
     //rectangle( cvOutput, faceRects[i], Scalar(255,0,0));
     cv::Mat croppedFace = cvGray(faceRects[0]);
     cv::Mat scaledFace;
@@ -127,29 +147,60 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
 
   image->image = cvOutput;
   image->encoding = "mono8";
+=======
+    rectangle( cvDepth, faceRects[i], Scalar(0,255,0));
+  }
+
+  ROS_INFO("Publishing");
+  
+  //image->image = cvOutput;
+  //image->encoding = "mono8";
+>>>>>>> 6f3e6e91ed599daecc349a26fd1f8d50b856a3ad
 
   //Publish image
-  publisher.publish(image->toImageMsg());
+  publisher.publish(depthImage->toImageMsg());
 
 }
 
+
+
 int main( int argc, char** argv)
 {
+<<<<<<< HEAD
+=======
+ ROS_INFO("Publishing");
+  cout << "Starting node" << endl;
+  cout.flush();
+
+>>>>>>> 6f3e6e91ed599daecc349a26fd1f8d50b856a3ad
   //Init ROS
   ros::init(argc, argv, "face_detector");
   ros::NodeHandle n;
 
 
-  //Set up image publish and subscribe
-  image_transport::ImageTransport it(n);
+  message_filters::Subscriber<sensor_msgs::Image> rgb_sub(n,"rgb_input",1);
+  message_filters::Subscriber<sensor_msgs::Image> depth_sub(n,"depth_input",1);
 
-  image_transport::Subscriber sub = 
-    it.subscribe("input",
+  typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::Image,sensor_msgs::Image> KinectSyncPolicy;
+  message_filters::Synchronizer<KinectSyncPolicy> sync(KinectSyncPolicy(10),rgb_sub,depth_sub);
+  sync.registerCallback(boost::bind(&callback, _1, _2));
+
+  /*image_transport::Subscriber sub = 
+    it.subscribe("rgb_image",
 		 1,
-		 callback);
+		 callback);*/
 
+
+<<<<<<< HEAD
   publisher = it.advertise("output",10);
   facesPublisher = it.advertise("cropped_faces",10);
+=======
+
+
+  //Set up image publish
+  image_transport::ImageTransport it(n);
+  publisher = it.advertise("output",1);
+>>>>>>> 6f3e6e91ed599daecc349a26fd1f8d50b856a3ad
 
   string face_cascade_file;
 

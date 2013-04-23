@@ -39,7 +39,10 @@ rosbuild_add_executable(SimpleBlobDetector src/SimpleBlobDetector.cpp)
 rosbuild_add_executable(QRCodeFinder src/QRCodeFinder.cpp)
 rosbuild_add_executable(FaceDetector src/FaceDetector.cpp)
 rosbuild_add_executable(PersonFollower src/PersonFollower)
+<<<<<<< HEAD
 rosbuild_add_executable(TestDirectory src/TestDirectory.cpp)
 rosbuild_add_executable(FaceRecognizer src/FaceRecognizer.cpp)
+=======
+>>>>>>> 6f3e6e91ed599daecc349a26fd1f8d50b856a3ad
 target_link_libraries(test_blur zxing)
 target_link_libraries(QRCodeFinder zxing)
