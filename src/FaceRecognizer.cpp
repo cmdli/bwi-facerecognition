@@ -23,6 +23,7 @@ Ptr<FaceRecognizer> model;
 
 void train(string csv_file)
 {
+  ROS_INFO("Loading training data...");
   vector<Mat> images;
   vector<int> labels;
 
@@ -54,11 +55,7 @@ void train(string csv_file)
     ROS_ERROR("Could not load face data");
   }
 
-  Mat testImage = images[images.size() - 1];
-  int testType = labels[labels.size() - 1];
-  images.pop_back();
-  labels.pop_back();
-
+   ROS_INFO("Training...");
   model = createEigenFaceRecognizer();
   model->train(images, labels);
 }
