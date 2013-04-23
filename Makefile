@@ -36,10 +36,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /nishome/cmdli/ros/rosbuild_ws/class-code/friproject
+CMAKE_SOURCE_DIR = /nishome/ejennings/ros/rosbuild_ws/class-code/friproject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /nishome/cmdli/ros/rosbuild_ws/class-code/friproject
+CMAKE_BINARY_DIR = /nishome/ejennings/ros/rosbuild_ws/class-code/friproject
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -107,9 +107,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/CMakeFiles /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/CMakeFiles /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -202,19 +202,6 @@ ORBDetector/fast:
 .PHONY : ORBDetector/fast
 
 #=============================================================================
-# Target rules for targets named PersonFollower
-
-# Build rule for target.
-PersonFollower: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 PersonFollower
-.PHONY : PersonFollower
-
-# fast build rule for target.
-PersonFollower/fast:
-	$(MAKE) -f CMakeFiles/PersonFollower.dir/build.make CMakeFiles/PersonFollower.dir/build
-.PHONY : PersonFollower/fast
-
-#=============================================================================
 # Target rules for targets named QRCodeFinder
 
 # Build rule for target.
@@ -278,19 +265,6 @@ SimpleBlobDetector: cmake_check_build_system
 SimpleBlobDetector/fast:
 	$(MAKE) -f CMakeFiles/SimpleBlobDetector.dir/build.make CMakeFiles/SimpleBlobDetector.dir/build
 .PHONY : SimpleBlobDetector/fast
-
-#=============================================================================
-# Target rules for targets named TestDirectory
-
-# Build rule for target.
-TestDirectory: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 TestDirectory
-.PHONY : TestDirectory
-
-# fast build rule for target.
-TestDirectory/fast:
-	$(MAKE) -f CMakeFiles/TestDirectory.dir/build.make CMakeFiles/TestDirectory.dir/build
-.PHONY : TestDirectory/fast
 
 #=============================================================================
 # Target rules for targets named clean_test_results
@@ -633,30 +607,6 @@ src/ORBDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/ORBDetector.dir/build.make CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.s
 .PHONY : src/ORBDetector.cpp.s
 
-src/PersonFollower.o: src/PersonFollower.cpp.o
-.PHONY : src/PersonFollower.o
-
-# target to build an object file
-src/PersonFollower.cpp.o:
-	$(MAKE) -f CMakeFiles/PersonFollower.dir/build.make CMakeFiles/PersonFollower.dir/src/PersonFollower.cpp.o
-.PHONY : src/PersonFollower.cpp.o
-
-src/PersonFollower.i: src/PersonFollower.cpp.i
-.PHONY : src/PersonFollower.i
-
-# target to preprocess a source file
-src/PersonFollower.cpp.i:
-	$(MAKE) -f CMakeFiles/PersonFollower.dir/build.make CMakeFiles/PersonFollower.dir/src/PersonFollower.cpp.i
-.PHONY : src/PersonFollower.cpp.i
-
-src/PersonFollower.s: src/PersonFollower.cpp.s
-.PHONY : src/PersonFollower.s
-
-# target to generate assembly for a file
-src/PersonFollower.cpp.s:
-	$(MAKE) -f CMakeFiles/PersonFollower.dir/build.make CMakeFiles/PersonFollower.dir/src/PersonFollower.cpp.s
-.PHONY : src/PersonFollower.cpp.s
-
 src/QRCodeFinder.o: src/QRCodeFinder.cpp.o
 .PHONY : src/QRCodeFinder.o
 
@@ -729,30 +679,6 @@ src/SimpleBlobDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/SimpleBlobDetector.dir/build.make CMakeFiles/SimpleBlobDetector.dir/src/SimpleBlobDetector.cpp.s
 .PHONY : src/SimpleBlobDetector.cpp.s
 
-src/TestDirectory.o: src/TestDirectory.cpp.o
-.PHONY : src/TestDirectory.o
-
-# target to build an object file
-src/TestDirectory.cpp.o:
-	$(MAKE) -f CMakeFiles/TestDirectory.dir/build.make CMakeFiles/TestDirectory.dir/src/TestDirectory.cpp.o
-.PHONY : src/TestDirectory.cpp.o
-
-src/TestDirectory.i: src/TestDirectory.cpp.i
-.PHONY : src/TestDirectory.i
-
-# target to preprocess a source file
-src/TestDirectory.cpp.i:
-	$(MAKE) -f CMakeFiles/TestDirectory.dir/build.make CMakeFiles/TestDirectory.dir/src/TestDirectory.cpp.i
-.PHONY : src/TestDirectory.cpp.i
-
-src/TestDirectory.s: src/TestDirectory.cpp.s
-.PHONY : src/TestDirectory.s
-
-# target to generate assembly for a file
-src/TestDirectory.cpp.s:
-	$(MAKE) -f CMakeFiles/TestDirectory.dir/build.make CMakeFiles/TestDirectory.dir/src/TestDirectory.cpp.s
-.PHONY : src/TestDirectory.cpp.s
-
 src/test_blur.o: src/test_blur.cpp.o
 .PHONY : src/test_blur.o
 
@@ -788,13 +714,11 @@ help:
 	@echo "... FaceDetector"
 	@echo "... ImageRecorder"
 	@echo "... ORBDetector"
-	@echo "... PersonFollower"
 	@echo "... QRCodeFinder"
 	@echo "... ROSBUILD_genmsg_cpp"
 	@echo "... ROSBUILD_gensrv_cpp"
 	@echo "... SIFTDetector"
 	@echo "... SimpleBlobDetector"
-	@echo "... TestDirectory"
 	@echo "... clean_test_results"
 	@echo "... doxygen"
 	@echo "... edit_cache"
@@ -833,9 +757,6 @@ help:
 	@echo "... src/ORBDetector.o"
 	@echo "... src/ORBDetector.i"
 	@echo "... src/ORBDetector.s"
-	@echo "... src/PersonFollower.o"
-	@echo "... src/PersonFollower.i"
-	@echo "... src/PersonFollower.s"
 	@echo "... src/QRCodeFinder.o"
 	@echo "... src/QRCodeFinder.i"
 	@echo "... src/QRCodeFinder.s"
@@ -845,9 +766,6 @@ help:
 	@echo "... src/SimpleBlobDetector.o"
 	@echo "... src/SimpleBlobDetector.i"
 	@echo "... src/SimpleBlobDetector.s"
-	@echo "... src/TestDirectory.o"
-	@echo "... src/TestDirectory.i"
-	@echo "... src/TestDirectory.s"
 	@echo "... src/test_blur.o"
 	@echo "... src/test_blur.i"
 	@echo "... src/test_blur.s"

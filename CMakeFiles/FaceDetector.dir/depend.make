@@ -14,14 +14,6 @@ CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/imag
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/image_transport/single_subscriber_publisher.h
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/image_transport/subscriber.h
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/image_transport/transport_hints.h
-CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/message_filters/connection.h
-CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/message_filters/null_types.h
-CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/message_filters/signal1.h
-CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/message_filters/signal9.h
-CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/message_filters/simple_filter.h
-CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/message_filters/subscriber.h
-CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/message_filters/sync_policies/approximate_time.h
-CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/message_filters/synchronizer.h
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv/cv.h
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/calib3d/calib3d.hpp
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/contrib/contrib.hpp

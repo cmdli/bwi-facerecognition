@@ -9,7 +9,6 @@
 
 #include <stdlib.h>
 #include <iostream>
-#include <iostream>
 #include <fstream>
 #include <sstream>
 
@@ -32,7 +31,7 @@ CascadeClassifier faces;
 
 Ptr<FaceRecognizer> model;
 
-void train(string csv_file)
+void train(string csv_file, string faces_path)
 {
   ROS_INFO("Loading training data...");
   ROS_INFO(csv_file.c_str());
@@ -48,28 +47,42 @@ void train(string csv_file)
 	exit(1);
     }
 
-    string line, file_path, type;
+    string line, relative_file_path, type;
     while(getline(file,line)) {
       if(line[0] == '#')
 	continue;
 
       stringstream stream(line);
-      getline(stream, file_path, ';');
+      getline(stream, relative_file_path, ';');
       getline(stream, type);
+      string file_path = faces_path + relative_file_path;
+
       if(!file_path.empty() && !type.empty()) {
+
 	stringstream ss;
 	ss << "Loading training file: " << file_path;
         ROS_INFO(ss.str().c_str());
-        IplImage* img = cvLoadImage(file_path.c_str());
-	cv::Mat image(img);
-	cvReleaseImage(&img);
-	cv::Mat grayUnscaledFace;
-	cvtColor(image, grayUnscaledFace, CV_RGB2GRAY);
-	ss.clear();
-        cv::Mat scaledFace;
-        cv::resize(grayUnscaledFace,scaledFace,Size(105,105),0,0);
-	images.push_back(scaledFace);
-	labels.push_back(atoi(type.c_str()));
+
+	ifstream file(file_path.c_str());
+	if (file.good())
+	{
+		file.close();
+		cv::Mat image = imread(file_path);
+		cv::Mat grayUnscaledFace;
+		cvtColor(image, grayUnscaledFace, CV_RGB2GRAY);
+
+        	cv::Mat scaledFace;
+        	cv::resize(grayUnscaledFace,scaledFace,Size(105,105),0,0);
+
+		images.push_back(scaledFace);
+		labels.push_back(atoi(type.c_str()));
+	}
+	else {
+		ss.clear();
+		ss << "Unable to load file: " << file_path;
+		ROS_ERROR(ss.str().c_str());
+	}
+	
       }
       
     }
@@ -84,22 +97,24 @@ void train(string csv_file)
   ROS_INFO("Done training");
 }
 
-string recognizeFace(Mat image)
+int recognizeFace(Mat image)
 {
-  int result = model->predict(image);
-  stringstream ss;
-  ss << "Saw: " << result;
+  double difference;
+  int label;
 
+  model->predict(image,label,difference);
+  if (difference > 4000)
+	label = -1;
+
+  stringstream ss;
+  ss << "Saw: " << label << "	Diff: " << difference;
   ROS_INFO(ss.str().c_str());
 
-  
-
-  return ss.str();
+  return label;
 }
 
 void callback(const sensor_msgs::ImageConstPtr &imgptr)
 {
-
 
   //Load image into OpenCV
   const sensor_msgs::Image img = *imgptr;
@@ -114,24 +129,28 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
 
   faces.detectMultiScale(cvGray, faceRects);
 
+  string encoding = image->encoding;
+
   for(int i = 0; i < faceRects.size(); i++) {
-    rectangle( cvOutput, faceRects[i], Scalar(255,0,0));
-    cv::Mat croppedFace = cvGray(faceRects[0]);
+    cv::Mat croppedFace = cvGray(faceRects[i]);
     cv::Mat scaledFace;
     cv::resize(croppedFace,scaledFace,Size(105,105),0,0);
+
     image->image = croppedFace;
     image->encoding = "mono8";
+
     facesPublisher.publish(image->toImageMsg());
-    recognizeFace(scaledFace);
+    int person = recognizeFace(scaledFace);
+	switch (person) {
+		case 1: rectangle( cvImage, faceRects[i], Scalar(0,255,0)); break;
+		case 2: rectangle( cvImage, faceRects[i], Scalar(0,0,255)); break;
+		default: rectangle( cvImage, faceRects[i], Scalar(255,0,0)); break;
+	}		
+
   }
 
-  image->image = cvOutput;
-  image->encoding = "mono8";
-
-  ROS_INFO("Publishing");
-  
-  image->image = cvOutput;
-  image->encoding = "mono8";
+  image->image = cvImage;
+  image->encoding = encoding;
 
   //Publish image
   publisher.publish(image->toImageMsg());
@@ -149,7 +168,7 @@ int main( int argc, char** argv)
   image_transport::ImageTransport it(n);
 
   image_transport::Subscriber sub = 
-    it.subscribe("rgb_image",
+    it.subscribe("rgb_input",
 		 1,
 		 callback);
 
@@ -172,9 +191,17 @@ int main( int argc, char** argv)
     return 1;
   }
 
-  train(csv_file);
+  string faces_path;
+  if(!n.getParam("/FaceDetector/training_data_path", faces_path)) {
+    ROS_ERROR("Training data file not set in launch file");
+    return 1;
+  }
 
-  //Transfer control to ROS
+  train(csv_file,faces_path);
+
+
+
+  ROS_INFO("Transfer control to ROS");
   ros::spin();
 
   return 0;
