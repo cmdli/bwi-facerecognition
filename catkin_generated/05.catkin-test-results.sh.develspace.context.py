@@ -1,7 +1,7 @@
 DEVELSPACE = True
 INSTALLSPACE = False
 
-CATKIN_DEVEL_PREFIX = '/nishome/ejennings/ros/rosbuild_ws/class-code/friproject/devel'
+CATKIN_DEVEL_PREFIX = '/nishome/cmdli/ros/rosbuild_ws/class-code/friproject/devel'
 
 CATKIN_GLOBAL_BIN_DESTINATION = 'bin'
 CATKIN_GLOBAL_ETC_DESTINATION = 'etc'
@@ -19,12 +19,12 @@ CATKIN_PACKAGE_LIBEXEC_DESTINATION = ''
 CATKIN_PACKAGE_PYTHON_DESTINATION = ''
 CATKIN_PACKAGE_SHARE_DESTINATION = ''
 
-CMAKE_BINARY_DIR = '/nishome/ejennings/ros/rosbuild_ws/class-code/friproject'
-CMAKE_CURRENT_BINARY_DIR = '/nishome/ejennings/ros/rosbuild_ws/class-code/friproject'
-CMAKE_CURRENT_SOURCE_DIR = '/nishome/ejennings/ros/rosbuild_ws/class-code/friproject'
+CMAKE_BINARY_DIR = '/nishome/cmdli/ros/rosbuild_ws/class-code/friproject'
+CMAKE_CURRENT_BINARY_DIR = '/nishome/cmdli/ros/rosbuild_ws/class-code/friproject'
+CMAKE_CURRENT_SOURCE_DIR = '/nishome/cmdli/ros/rosbuild_ws/class-code/friproject'
 CMAKE_INSTALL_PREFIX = '/usr/local'
-CMAKE_SOURCE_DIR = '/nishome/ejennings/ros/rosbuild_ws/class-code/friproject'
+CMAKE_SOURCE_DIR = '/nishome/cmdli/ros/rosbuild_ws/class-code/friproject'
 
 PROJECT_NAME = 'friproject'
-PROJECT_BINARY_DIR = '/nishome/ejennings/ros/rosbuild_ws/class-code/friproject'
-PROJECT_SOURCE_DIR = '/nishome/ejennings/ros/rosbuild_ws/class-code/friproject'
+PROJECT_BINARY_DIR = '/nishome/cmdli/ros/rosbuild_ws/class-code/friproject'
+PROJECT_SOURCE_DIR = '/nishome/cmdli/ros/rosbuild_ws/class-code/friproject'

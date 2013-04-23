@@ -24,6 +24,9 @@ CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/mess
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/message_filters/synchronizer.h
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv/cv.h
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/calib3d/calib3d.hpp
+CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/contrib/contrib.hpp
+CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/contrib/openfabmap.hpp
+CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/contrib/retina.hpp
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/core/core.hpp
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/core/core_c.h
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/core/eigen.hpp
@@ -65,6 +68,8 @@ CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/open
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/flann/sampling.h
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/flann/saving.h
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/flann/timer.h
+CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/highgui/highgui.hpp
+CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/highgui/highgui_c.h
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/imgproc/imgproc.hpp
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/imgproc/imgproc_c.h
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/include/opencv2/imgproc/types_c.h

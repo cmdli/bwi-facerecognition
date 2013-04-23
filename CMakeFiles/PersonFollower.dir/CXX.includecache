@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/PersonFollower.cpp
+/nishome/cmdli/ros/rosbuild_ws/class-code/friproject/src/PersonFollower.cpp
 iostream
 -
 ros/ros.h

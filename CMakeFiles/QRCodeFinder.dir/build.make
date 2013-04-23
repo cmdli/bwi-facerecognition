@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /nishome/ejennings/ros/rosbuild_ws/class-code/friproject
+CMAKE_SOURCE_DIR = /nishome/cmdli/ros/rosbuild_ws/class-code/friproject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /nishome/ejennings/ros/rosbuild_ws/class-code/friproject
+CMAKE_BINARY_DIR = /nishome/cmdli/ros/rosbuild_ws/class-code/friproject
 
 # Include any dependencies generated for this target.
 include CMakeFiles/QRCodeFinder.dir/depend.make
@@ -73,17 +73,17 @@ CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.o: /opt/ros/groovy/share/rospac
 CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.o: /opt/ros/groovy/share/roslib/package.xml
 CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.o: /opt/ros/groovy/share/pluginlib/package.xml
 CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.o: /opt/ros/groovy/share/image_transport/package.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.o -c /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/QRCodeFinder.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.o -c /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/src/QRCodeFinder.cpp
 
 CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/QRCodeFinder.cpp > CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/src/QRCodeFinder.cpp > CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.i
 
 CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/QRCodeFinder.cpp -o CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/src/QRCodeFinder.cpp -o CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.s
 
 CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.o.requires:
 .PHONY : CMakeFiles/QRCodeFinder.dir/src/QRCodeFinder.cpp.o.requires
@@ -119,6 +119,6 @@ CMakeFiles/QRCodeFinder.dir/clean:
 .PHONY : CMakeFiles/QRCodeFinder.dir/clean
 
 CMakeFiles/QRCodeFinder.dir/depend:
-	cd /nishome/ejennings/ros/rosbuild_ws/class-code/friproject && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/CMakeFiles/QRCodeFinder.dir/DependInfo.cmake --color=$(COLOR)
+	cd /nishome/cmdli/ros/rosbuild_ws/class-code/friproject && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /nishome/cmdli/ros/rosbuild_ws/class-code/friproject /nishome/cmdli/ros/rosbuild_ws/class-code/friproject /nishome/cmdli/ros/rosbuild_ws/class-code/friproject /nishome/cmdli/ros/rosbuild_ws/class-code/friproject /nishome/cmdli/ros/rosbuild_ws/class-code/friproject/CMakeFiles/QRCodeFinder.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/QRCodeFinder.dir/depend
 

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/SIFTDetector.cpp
+/nishome/cmdli/ros/rosbuild_ws/class-code/friproject/src/SIFTDetector.cpp
 ros/ros.h
 -
 image_transport/image_transport.h
@@ -18,11 +18,11 @@ opencv/cv.h
 vector
 -
 opencv2/core/core.hpp
-/nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/opencv2/core/core.hpp
+/nishome/cmdli/ros/rosbuild_ws/class-code/friproject/src/opencv2/core/core.hpp
 opencv2/features2d/features2d.hpp
-/nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/opencv2/features2d/features2d.hpp
+/nishome/cmdli/ros/rosbuild_ws/class-code/friproject/src/opencv2/features2d/features2d.hpp
 opencv2/nonfree/nonfree.hpp
-/nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/opencv2/nonfree/nonfree.hpp
+/nishome/cmdli/ros/rosbuild_ws/class-code/friproject/src/opencv2/nonfree/nonfree.hpp
 
 /opt/ros/groovy/include/XmlRpcDecl.h
 ros/macros.h
