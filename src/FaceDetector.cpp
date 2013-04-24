@@ -141,11 +141,15 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
 
     facesPublisher.publish(image->toImageMsg());
     int person = recognizeFace(scaledFace);
+    String name;
+    Scalar color;
 	switch (person) {
-		case 1: rectangle( cvImage, faceRects[i], Scalar(0,255,0)); break;
-		case 2: rectangle( cvImage, faceRects[i], Scalar(0,0,255)); break;
-		default: rectangle( cvImage, faceRects[i], Scalar(255,0,0)); break;
-	}		
+		case 1: color = Scalar(0,255,0); name = "Ethan"; break;
+		case 2: color = Scalar(0,0,255); name = "Mukund"; break;
+		default: color = Scalar(255,0,0); name = "Unknown"; break;
+	}
+	rectangle( cvImage, faceRects[i], color);	
+	putText( cvImage, name.c_str(), Point(faceRects[i].x,faceRects[i].y+faceRects[i].height+20),  cv::FONT_HERSHEY_PLAIN, 2.2, color, 3);
 
   }
 
