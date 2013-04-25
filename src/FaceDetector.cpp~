@@ -106,11 +106,11 @@ int recognizeFace(Mat image)
   if (difference > 3500)
 	label = -1;
 
-  if (label != -1) {
+  //if (label != -1) {
 	  stringstream ss;
 	  ss << "Saw: " << label << "	Diff: " << difference;
 	  ROS_INFO(ss.str().c_str());
-}
+//}
 
   return label;
 }
@@ -154,10 +154,10 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
 		case 2: color = Scalar(0,128,255); name = "Ethan"; break;
 		default: color = Scalar(0,0,255); name = "Unknown"; personUnkown = true; break;
 	}
-	if (!personUnkown) {
+	//if (!personUnkown) {
 		rectangle( cvImage, faceRects[i], color);	
 		putText( cvImage, name.c_str(), Point(faceRects[i].x,faceRects[i].y+faceRects[i].height+20),  cv::FONT_HERSHEY_PLAIN, 1.5, Scalar(0,0,0), 2);
-}			
+//}			
 
   }
 
