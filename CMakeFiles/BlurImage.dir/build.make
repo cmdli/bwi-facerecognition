@@ -31,11 +31,14 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /nishome/ejennings/ros/rosbuild_ws/class-code/friproject
+CMAKE_SOURCE_DIR = /home/fri/ros/rosbuild_ws/class-code/friproject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /nishome/ejennings/ros/rosbuild_ws/class-code/friproject
+CMAKE_BINARY_DIR = /home/fri/ros/rosbuild_ws/class-code/friproject
 
 # Include any dependencies generated for this target.
 include CMakeFiles/BlurImage.dir/depend.make
@@ -73,17 +76,17 @@ CMakeFiles/BlurImage.dir/src/BlurImage.cpp.o: /opt/ros/groovy/share/rospack/pack
 CMakeFiles/BlurImage.dir/src/BlurImage.cpp.o: /opt/ros/groovy/share/roslib/package.xml
 CMakeFiles/BlurImage.dir/src/BlurImage.cpp.o: /opt/ros/groovy/share/pluginlib/package.xml
 CMakeFiles/BlurImage.dir/src/BlurImage.cpp.o: /opt/ros/groovy/share/image_transport/package.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/fri/ros/rosbuild_ws/class-code/friproject/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/BlurImage.dir/src/BlurImage.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/BlurImage.dir/src/BlurImage.cpp.o -c /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/BlurImage.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/BlurImage.dir/src/BlurImage.cpp.o -c /home/fri/ros/rosbuild_ws/class-code/friproject/src/BlurImage.cpp
 
 CMakeFiles/BlurImage.dir/src/BlurImage.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BlurImage.dir/src/BlurImage.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/BlurImage.cpp > CMakeFiles/BlurImage.dir/src/BlurImage.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/fri/ros/rosbuild_ws/class-code/friproject/src/BlurImage.cpp > CMakeFiles/BlurImage.dir/src/BlurImage.cpp.i
 
 CMakeFiles/BlurImage.dir/src/BlurImage.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BlurImage.dir/src/BlurImage.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/BlurImage.cpp -o CMakeFiles/BlurImage.dir/src/BlurImage.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/fri/ros/rosbuild_ws/class-code/friproject/src/BlurImage.cpp -o CMakeFiles/BlurImage.dir/src/BlurImage.cpp.s
 
 CMakeFiles/BlurImage.dir/src/BlurImage.cpp.o.requires:
 .PHONY : CMakeFiles/BlurImage.dir/src/BlurImage.cpp.o.requires
@@ -119,6 +122,6 @@ CMakeFiles/BlurImage.dir/clean:
 .PHONY : CMakeFiles/BlurImage.dir/clean
 
 CMakeFiles/BlurImage.dir/depend:
-	cd /nishome/ejennings/ros/rosbuild_ws/class-code/friproject && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/CMakeFiles/BlurImage.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/fri/ros/rosbuild_ws/class-code/friproject && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fri/ros/rosbuild_ws/class-code/friproject /home/fri/ros/rosbuild_ws/class-code/friproject /home/fri/ros/rosbuild_ws/class-code/friproject /home/fri/ros/rosbuild_ws/class-code/friproject /home/fri/ros/rosbuild_ws/class-code/friproject/CMakeFiles/BlurImage.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/BlurImage.dir/depend
 

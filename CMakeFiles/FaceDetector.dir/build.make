@@ -31,11 +31,14 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /nishome/ejennings/ros/rosbuild_ws/class-code/friproject
+CMAKE_SOURCE_DIR = /home/fri/ros/rosbuild_ws/class-code/friproject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /nishome/ejennings/ros/rosbuild_ws/class-code/friproject
+CMAKE_BINARY_DIR = /home/fri/ros/rosbuild_ws/class-code/friproject
 
 # Include any dependencies generated for this target.
 include CMakeFiles/FaceDetector.dir/depend.make
@@ -73,17 +76,17 @@ CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/share/rospac
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/share/roslib/package.xml
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/share/pluginlib/package.xml
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o: /opt/ros/groovy/share/image_transport/package.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/fri/ros/rosbuild_ws/class-code/friproject/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o -c /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/FaceDetector.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o -c /home/fri/ros/rosbuild_ws/class-code/friproject/src/FaceDetector.cpp
 
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/FaceDetector.cpp > CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/fri/ros/rosbuild_ws/class-code/friproject/src/FaceDetector.cpp > CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.i
 
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/FaceDetector.cpp -o CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/fri/ros/rosbuild_ws/class-code/friproject/src/FaceDetector.cpp -o CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.s
 
 CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o.requires:
 .PHONY : CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o.requires
@@ -119,6 +122,6 @@ CMakeFiles/FaceDetector.dir/clean:
 .PHONY : CMakeFiles/FaceDetector.dir/clean
 
 CMakeFiles/FaceDetector.dir/depend:
-	cd /nishome/ejennings/ros/rosbuild_ws/class-code/friproject && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/CMakeFiles/FaceDetector.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/fri/ros/rosbuild_ws/class-code/friproject && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fri/ros/rosbuild_ws/class-code/friproject /home/fri/ros/rosbuild_ws/class-code/friproject /home/fri/ros/rosbuild_ws/class-code/friproject /home/fri/ros/rosbuild_ws/class-code/friproject /home/fri/ros/rosbuild_ws/class-code/friproject/CMakeFiles/FaceDetector.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/FaceDetector.dir/depend
 

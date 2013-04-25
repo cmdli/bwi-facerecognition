@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/FaceDetector.cpp" "/nishome/ejennings/ros/rosbuild_ws/class-code/friproject/CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o"
+  "/home/fri/ros/rosbuild_ws/class-code/friproject/src/FaceDetector.cpp" "/home/fri/ros/rosbuild_ws/class-code/friproject/CMakeFiles/FaceDetector.dir/src/FaceDetector.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

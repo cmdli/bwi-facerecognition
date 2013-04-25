@@ -103,12 +103,14 @@ int recognizeFace(Mat image)
   int label;
 
   model->predict(image,label,difference);
-  if (difference > 4000)
+  if (difference > 3500)
 	label = -1;
 
-  stringstream ss;
-  ss << "Saw: " << label << "	Diff: " << difference;
-  ROS_INFO(ss.str().c_str());
+  if (label != -1) {
+	  stringstream ss;
+	  ss << "Saw: " << label << "	Diff: " << difference;
+	  ROS_INFO(ss.str().c_str());
+}
 
   return label;
 }
@@ -132,6 +134,8 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
   string encoding = image->encoding;
 
   for(int i = 0; i < faceRects.size(); i++) {
+    if (faceRects[i].width > 200)
+	continue;
     cv::Mat croppedFace = cvGray(faceRects[i]);
     cv::Mat scaledFace;
     cv::resize(croppedFace,scaledFace,Size(105,105),0,0);
@@ -143,13 +147,17 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
     int person = recognizeFace(scaledFace);
     String name;
     Scalar color;
+	bool personUnkown = false;
 	switch (person) {
-		case 1: color = Scalar(0,255,0); name = "Ethan"; break;
-		case 2: color = Scalar(0,0,255); name = "Mukund"; break;
-		default: color = Scalar(255,0,0); name = "Unknown"; break;
+		case 0: color = Scalar(0,255, 0); name = "Chris"; break;
+		case 1: color = Scalar(255,0,0); name = "Mukund"; break;
+		case 2: color = Scalar(0,128,255); name = "Ethan"; break;
+		default: color = Scalar(0,0,255); name = "Unknown"; personUnkown = true; break;
 	}
-	rectangle( cvImage, faceRects[i], color);	
-	putText( cvImage, name.c_str(), Point(faceRects[i].x,faceRects[i].y+faceRects[i].height+20),  cv::FONT_HERSHEY_PLAIN, 2.2, color, 3);
+	if (!personUnkown) {
+		rectangle( cvImage, faceRects[i], color);	
+		putText( cvImage, name.c_str(), Point(faceRects[i].x,faceRects[i].y+faceRects[i].height+20),  cv::FONT_HERSHEY_PLAIN, 1.5, Scalar(0,0,0), 2);
+}			
 
   }
 

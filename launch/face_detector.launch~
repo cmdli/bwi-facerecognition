@@ -7,6 +7,6 @@
 	      <param name="face_cascade_file" value="$(find friproject)/haarcascades/haarcascade_frontalface_default.xml" />
 	      <param name="dummy" value="yes" />
 	      <param name="csv_file" value="$(find friproject)/faces.csv" />
-	      <param name="training_data_path" value="$(find friproject)" />
+	      <param name="training_data_path" value="$(find friproject)/" />
 	</node>
 </launch>

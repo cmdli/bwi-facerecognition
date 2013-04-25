@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/FaceDetector.cpp
+/home/fri/ros/rosbuild_ws/class-code/friproject/src/FaceDetector.cpp
 ros/ros.h
 -
 image_transport/image_transport.h
@@ -28,11 +28,11 @@ opencv2/objdetect/objdetect.hpp
 opencv2/imgproc/imgproc.hpp
 -
 opencv2/core/core.hpp
-/nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/opencv2/core/core.hpp
+/home/fri/ros/rosbuild_ws/class-code/friproject/src/opencv2/core/core.hpp
 opencv2/contrib/contrib.hpp
-/nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/opencv2/contrib/contrib.hpp
+/home/fri/ros/rosbuild_ws/class-code/friproject/src/opencv2/contrib/contrib.hpp
 opencv2/highgui/highgui.hpp
-/nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/opencv2/highgui/highgui.hpp
+/home/fri/ros/rosbuild_ws/class-code/friproject/src/opencv2/highgui/highgui.hpp
 unistd.h
 -
 

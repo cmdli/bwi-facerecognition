@@ -31,11 +31,14 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /nishome/ejennings/ros/rosbuild_ws/class-code/friproject
+CMAKE_SOURCE_DIR = /home/fri/ros/rosbuild_ws/class-code/friproject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /nishome/ejennings/ros/rosbuild_ws/class-code/friproject
+CMAKE_BINARY_DIR = /home/fri/ros/rosbuild_ws/class-code/friproject
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ORBDetector.dir/depend.make
@@ -73,17 +76,17 @@ CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.o: /opt/ros/groovy/share/rospack/
 CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.o: /opt/ros/groovy/share/roslib/package.xml
 CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.o: /opt/ros/groovy/share/pluginlib/package.xml
 CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.o: /opt/ros/groovy/share/image_transport/package.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/fri/ros/rosbuild_ws/class-code/friproject/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.o -c /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/ORBDetector.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.o -c /home/fri/ros/rosbuild_ws/class-code/friproject/src/ORBDetector.cpp
 
 CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/ORBDetector.cpp > CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/fri/ros/rosbuild_ws/class-code/friproject/src/ORBDetector.cpp > CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.i
 
 CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/src/ORBDetector.cpp -o CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/fri/ros/rosbuild_ws/class-code/friproject/src/ORBDetector.cpp -o CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.s
 
 CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.o.requires:
 .PHONY : CMakeFiles/ORBDetector.dir/src/ORBDetector.cpp.o.requires
@@ -119,6 +122,6 @@ CMakeFiles/ORBDetector.dir/clean:
 .PHONY : CMakeFiles/ORBDetector.dir/clean
 
 CMakeFiles/ORBDetector.dir/depend:
-	cd /nishome/ejennings/ros/rosbuild_ws/class-code/friproject && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject /nishome/ejennings/ros/rosbuild_ws/class-code/friproject/CMakeFiles/ORBDetector.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/fri/ros/rosbuild_ws/class-code/friproject && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fri/ros/rosbuild_ws/class-code/friproject /home/fri/ros/rosbuild_ws/class-code/friproject /home/fri/ros/rosbuild_ws/class-code/friproject /home/fri/ros/rosbuild_ws/class-code/friproject /home/fri/ros/rosbuild_ws/class-code/friproject/CMakeFiles/ORBDetector.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ORBDetector.dir/depend
 
