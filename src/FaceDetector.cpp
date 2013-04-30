@@ -36,8 +36,8 @@ Ptr<FaceRecognizer> model;
 
 Mat& scaleImage(Mat& image, int width, int height)
 {
-  cv::Mat scaled;
-  cv::resize(image, scaled, Size(width,height), 0, 0);
+  Mat scaled;
+  resize(image, scaled, Size(width,height));
   return scaled;
 }
 
@@ -92,7 +92,8 @@ void train(string csv_file, string faces_path)
 	  cv::Mat grayUnscaledFace;
 	  cvtColor(image, grayUnscaledFace, CV_RGB2GRAY);
 
-	  cv::Mat scaledFace = scaleImage(grayUnscaledFace, 105, 105);
+	  cv::Mat scaledFace;
+	  resize(grayUnscaledFace, scaledFace, Size(105, 105), 0, 0);
 
 	  //Store training image and label
 	  images.push_back(scaledFace);
@@ -164,7 +165,8 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
 
     //Extract the face fom the original image and scale it
     cv::Mat croppedFace = cvGray(faceRects[i]);
-    cv::Mat scaledFace = scaleImage(croppedFace, 105, 105);
+    cv::Mat scaledFace;
+    resize(croppedFace, scaledFace, Size(105, 105));
 
     //Publish the cropped faces
     image->image = croppedFace;
