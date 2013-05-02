@@ -3,9 +3,13 @@
 #include <ros/ros.h>
 
 #include <image_transport/image_transport.h>
+#include <image_transport/subscriber_filter.h>
+#include <message_filters/synchronizer.h>
+#include <message_filters/sync_policies/approximate_time.h>
 
 #include <cv_bridge/cv_bridge.h>
 #include <opencv/cv.h>
+#include <sensor_msgs/image_encodings.h>
 
 #include <stdlib.h>
 #include <iostream>
@@ -20,6 +24,8 @@
 
 #include <unistd.h>
 
+#include <stdint.h>
+
 
 image_transport::Publisher publisher;
 image_transport::Publisher facesPublisher;
@@ -31,17 +37,6 @@ CascadeClassifier faces;
 
 Ptr<FaceRecognizer> model;
 
-
-#define DIFFERENCE_THRESHOLD 3500
-
-Mat& scaleImage(Mat& image, int width, int height)
-{
-  Mat scaled;
-  resize(image, scaled, Size(width,height));
-  return scaled;
-}
-
-//Trains the face recognizer on labelled data
 void train(string csv_file, string faces_path)
 {
   ROS_INFO("Loading training data...");
@@ -50,7 +45,6 @@ void train(string csv_file, string faces_path)
   vector<Mat> images;
   vector<int> labels;
 
-  //Read the images and labels using the CSV file
   try {
     ifstream file(csv_file.c_str());
     if(!file) {
@@ -61,11 +55,9 @@ void train(string csv_file, string faces_path)
 
     string line, relative_file_path, type;
     while(getline(file,line)) {
-      //Exclude comments
       if(line[0] == '#')
 	continue;
 
-      //Get the image and the label
       stringstream stream(line);
       getline(stream, relative_file_path, ';');
       getline(stream, type);
@@ -77,28 +69,24 @@ void train(string csv_file, string faces_path)
 	ss << "Loading training file: " << file_path;
         ROS_INFO(ss.str().c_str());
 
-	//Check if file actually exists
 	ifstream file(file_path.c_str());
-	if (!file.good()) {
+	if (file.good())
+	{
+		file.close();
+		cv::Mat image = imread(file_path);
+		cv::Mat grayUnscaledFace;
+		cvtColor(image, grayUnscaledFace, CV_RGB2GRAY);
+
+        	cv::Mat scaledFace;
+        	cv::resize(grayUnscaledFace,scaledFace,Size(105,105),0,0);
+
+		images.push_back(scaledFace);
+		labels.push_back(atoi(type.c_str()));
+	}
+	else {
 		ss.clear();
 		ss << "Unable to load file: " << file_path;
 		ROS_ERROR(ss.str().c_str());
-	}
-	else {
-	  file.close();
-
-	  //Read in image and scale it
-	  cv::Mat image = imread(file_path);
-	  cv::Mat grayUnscaledFace;
-	  cvtColor(image, grayUnscaledFace, CV_RGB2GRAY);
-
-	  cv::Mat scaledFace;
-	  resize(grayUnscaledFace, scaledFace, Size(105, 105), 0, 0);
-
-	  //Store training image and label
-	  images.push_back(scaledFace);
-	  labels.push_back(atoi(type.c_str()));
-
 	}
 	
       }
@@ -109,23 +97,19 @@ void train(string csv_file, string faces_path)
   catch(Exception &e) {
     ROS_ERROR("Could not load face data");
   }
-
-  //Train model on the loaded data
   ROS_INFO("Starting training");
   model = createEigenFaceRecognizer();
   model->train(images, labels);
   ROS_INFO("Done training");
 }
 
-int recognizeFace(Mat& image)
+int recognizeFace(Mat image)
 {
   double difference;
   int label;
 
   model->predict(image,label,difference);
-  
-  //If the model is unsure on the face, mark it as unrecognized
-  if (difference > DIFFERENCE_THRESHOLD)
+  if (difference > 4000)
 	label = -1;
 
   stringstream ss;
@@ -135,70 +119,69 @@ int recognizeFace(Mat& image)
   return label;
 }
 
+bool isActuallyFace(cv::Mat depthMat, Rect faceRect) {
+	float intensity = depthMat.at<float>(Point(0, 0));
+	//uchar blue = intensity.val[0];
+	//uchar red = intensity.val[2];
+	//uchar green = intensity.val[1];
+	cout << "Top left color is: " << intensity << endl;
+	return true;
+}
 
-
-void callback(const sensor_msgs::ImageConstPtr &imgptr)
+void callback(const sensor_msgs::ImageConstPtr &rgb_image_input, const sensor_msgs::ImageConstPtr &depth_image_input)
 {
-
   //Load image into OpenCV
-  const sensor_msgs::Image img = *imgptr;
-  cv_bridge::CvImagePtr image = cv_bridge::toCvCopy(img);
-  cv::Mat cvImage = image->image;
+  //const  rgb_img_msg = *rgb_image_input;
+  cv_bridge::CvImagePtr rgb_image = cv_bridge::toCvCopy((sensor_msgs::Image)*rgb_image_input);
+  cv::Mat cvImage = rgb_image->image;
+
+  //const  depth_img_msg = *depth_image_input;
+  cv_bridge::CvImagePtr depth_image = cv_bridge::toCvCopy((sensor_msgs::Image)*depth_image_input);
+  cv::Mat cvDepth = depth_image->image;
+
   cv::Mat cvGray;
 
-  //Convert image to grayscale
   cvtColor(cvImage, cvGray, CV_RGB2GRAY);
   cv::Mat cvOutput(cvGray);
 
-  //Load faces from image
   vector<Rect> faceRects;
+
   faces.detectMultiScale(cvGray, faceRects);
 
-  string encoding = image->encoding;
+  string oldEncoding = rgb_image->encoding;
 
-  //Draw boxes and label each face
+  isActuallyFace(cvDepth, Rect(0,0,0,0));
+
   for(int i = 0; i < faceRects.size(); i++) {
+    
 
-    //If the face is too small, exclude it
-    if (faceRects[i].width > 200)
-	continue;
-
-    //Extract the face fom the original image and scale it
     cv::Mat croppedFace = cvGray(faceRects[i]);
     cv::Mat scaledFace;
-    resize(croppedFace, scaledFace, Size(105, 105));
+    cv::resize(croppedFace,scaledFace,Size(105,105),0,0);
 
-    //Publish the cropped faces
-    image->image = croppedFace;
-    image->encoding = "mono8";
-    facesPublisher.publish(image->toImageMsg());
+    rgb_image->image = croppedFace;
+    rgb_image->encoding = "mono8";
 
-    //Recognize the person and draw a colored box around it
+    facesPublisher.publish(rgb_image->toImageMsg());
     int person = recognizeFace(scaledFace);
     String name;
     Scalar color;
-    bool personUnkown = false;
-    switch (person) {
-    case 0: 
-        color = Scalar(0,255, 0); name = "Chris"; break;
-    case 1: 
-        color = Scalar(255,0,0); name = "Mukund"; break;
-    case 2: 
-        color = Scalar(0,128,255); name = "Ethan"; break;
-    default: 
-        color = Scalar(0,0,255); name = "Unknown"; break;
-    }
-
-    rectangle( cvImage, faceRects[i], color);	
-    putText( cvImage, name.c_str(), Point(faceRects[i].x,faceRects[i].y+faceRects[i].height+20),  cv::FONT_HERSHEY_PLAIN, 1.5, Scalar(0,0,0), 2);
+	switch (person) {
+		case 1: color = Scalar(0,255,0); name = "Ethan"; break;
+		case 2: color = Scalar(0,0,255); name = "Mukund"; break;
+		default: color = Scalar(255,0,0); name = "Unknown"; break;
+	}
+	rectangle( cvImage, faceRects[i], color);	
+	putText( cvImage, name.c_str(), Point(faceRects[i].x,faceRects[i].y+faceRects[i].height+20),  cv::FONT_HERSHEY_PLAIN, 2.2, color, 3);
 
   }
 
-  image->image = cvImage;
-  image->encoding = encoding;
+  depth_image->image = cvDepth;
+  //rgb_image->encoding = "bgr8";
+  //depth_image->encoding = "mono8";
 
   //Publish image
-  publisher.publish(image->toImageMsg());
+  publisher.publish(depth_image->toImageMsg());
 
 }
 
@@ -210,33 +193,40 @@ int main( int argc, char** argv)
   ros::init(argc, argv, "face_detector");
   ros::NodeHandle n;
 
-  //Set up topics to subscribe and publish to
+  typedef image_transport::SubscriberFilter ImageSubscriber;
+  typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::Image, sensor_msgs::Image> MySyncPolicy;
+  
   image_transport::ImageTransport it(n);
-  image_transport::Subscriber sub = 
-    it.subscribe("rgb_input",
-		 1,
-		 callback);
+  ImageSubscriber rgb_input(it, "rgb_input", 1);
+  ImageSubscriber depth_input(it, "depth_input", 1);
+	
+  message_filters::Synchronizer<MySyncPolicy> sync(MySyncPolicy(10), rgb_input, depth_input);
+  sync.registerCallback(boost::bind(&callback, _1, _2));
+
+
+  /*image_transport::Subscriber sub = 
+  it.subscribe("rgb_input", 1, callback);*/
+
+
+
   publisher = it.advertise("output",10);
   facesPublisher = it.advertise("cropped_faces",10);
 
-  //Load in the path to the cascade file from the launch file
   string face_cascade_file;
+
   if(!n.getParam("/FaceDetector/face_cascade_file", face_cascade_file)) {
     ROS_ERROR("Could not find 'face_cascade_file' parameter");
     return 1;
   }
 
-  //Load the cascade file for face detection
   faces.load(face_cascade_file);
 
-  //Load in the CSV file with the training data for the face recognizer
   string csv_file;
   if(!n.getParam("/FaceDetector/csv_file", csv_file)) {
     ROS_ERROR("CSV file not set in launch file");
     return 1;
   }
 
-  //Load the location of the training data
   string faces_path;
   if(!n.getParam("/FaceDetector/training_data_path", faces_path)) {
     ROS_ERROR("Training data file not set in launch file");
@@ -244,6 +234,8 @@ int main( int argc, char** argv)
   }
 
   train(csv_file,faces_path);
+
+
 
   ROS_INFO("Transfer control to ROS");
   ros::spin();
