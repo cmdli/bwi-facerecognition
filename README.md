@@ -7,6 +7,16 @@ on the BWI stream. This is mainly for online collaboration.
 How to Use
 ===================
 
+To run the default code, start up the launch file 'face_detector.launch'.
+
+This node, by default, takes in RGB images from the '/camera/rgb/image_color' topic, detects and labels faces inside the image, then publishes the new image to '/detector/faces'. The code will only label 'chris', 'ethan', and 'mukund' without updating the training data. In addition, this node publishes the '/cropped_faces' topic which contains the extraced faces from the image.
+
+
+Configuring the Face Recognizer
+====================
+
+The face recognizer depends on prepared training data in the form of images fromthe topic '/cropped_faces' and labels, which are stored inside the 'faces' folder. Inside the folder, the various training images are stored in several directories named after the person whose images they contain (e.g. the 'chris' folder inside 'faces' contains images of Chris). The face recognizer also uses a file at the top of the package called 'faces.csv' to find each image in the 'faces' directory and their numerical label. For simplicity, a Python script is provided which takes in the 'faces' directory as an argument and prints out the CSV file for it (this script is stored in 'scripts/create_csv.py'). A third necessary step is giving the program the absolute path of the 'faces' folder, which is given to the program through the launch file argument 'face_directory_path'.
+
 Launch File Options
 ===================
 
@@ -26,8 +36,8 @@ CSV File Format
 ===================
 Each line should have the path of an image file relative to training_data_path and it's numerical label separated by a simicolon. You can also comment out lines with a '#'
 
-#Example file:
-faces/ethan/face1.jpg;0
-faces/ethan/face2.jpg;0
-faces/chris/face1.jpg;1
-faces/chris/face2.jpg;1
+    #Example file:
+    faces/ethan/face1.jpg;0
+    faces/ethan/face2.jpg;0
+    faces/chris/face1.jpg;1
+    faces/chris/face2.jpg;1
