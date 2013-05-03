@@ -30,7 +30,6 @@ Launch File Options
 * face_cascade_file: a path to a cascade file which is required by OpenCV's face detection algorithm.
 * csv_file: a CSV file that contains paths to all of the available training data
 * training_data_path: the base path for all of the paths in the CSV file
-* 
 
 Making Your Own Training Data
 ===================
