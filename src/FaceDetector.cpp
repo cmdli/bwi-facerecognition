@@ -33,13 +33,8 @@ Ptr<FaceRecognizer> model;
 
 
 #define DIFFERENCE_THRESHOLD 3500
-
-Mat& scaleImage(Mat& image, int width, int height)
-{
-  Mat scaled;
-  resize(image, scaled, Size(width,height));
-  return scaled;
-}
+#define MIN_FACE_SIZE 200
+#define CSV_COMMENT_CHAR '#'
 
 //Trains the face recognizer on labelled data
 void train(string csv_file, string faces_path)
@@ -52,6 +47,7 @@ void train(string csv_file, string faces_path)
 
   //Read the images and labels using the CSV file
   try {
+	//Open CSV file
     ifstream file(csv_file.c_str());
     if(!file) {
       string error_msg = "Could not load CSV file: " + csv_file;
@@ -59,13 +55,14 @@ void train(string csv_file, string faces_path)
 	exit(1);
     }
 
+	//Process each line as an image and label
     string line, relative_file_path, type;
     while(getline(file,line)) {
       //Exclude comments
-      if(line[0] == '#')
+      if(line[0] == CSV_COMMENT_CHAR)
 	continue;
 
-      //Get the image and the label
+      //Get the image path and the label
       stringstream stream(line);
       getline(stream, relative_file_path, ';');
       getline(stream, type);
@@ -125,6 +122,7 @@ int recognizeFace(Mat& image)
   model->predict(image,label,difference);
   
   //If the model is unsure on the face, mark it as unrecognized
+	//and return -1 for 'unknown'
   if (difference > DIFFERENCE_THRESHOLD)
 	label = -1;
 
@@ -160,7 +158,7 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
   for(int i = 0; i < faceRects.size(); i++) {
 
     //If the face is too small, exclude it
-    if (faceRects[i].width > 200)
+    if (faceRects[i].width > MIN_FACE_SIZE)
 	continue;
 
     //Extract the face fom the original image and scale it
@@ -178,6 +176,9 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
     String name;
     Scalar color;
     bool personUnkown = false;
+
+	//This code maps the numerical label from the CSV file to
+	//preset names.
     switch (person) {
     case 0: 
         color = Scalar(0,255, 0); name = "Chris"; break;
@@ -189,6 +190,8 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
         color = Scalar(0,0,255); name = "Unknown"; break;
     }
 
+	//Draw a rectangle around each face with a color
+	//corresponding to the person
     rectangle( cvImage, faceRects[i], color);	
     putText( cvImage, name.c_str(), Point(faceRects[i].x,faceRects[i].y+faceRects[i].height+20),  cv::FONT_HERSHEY_PLAIN, 1.5, Scalar(0,0,0), 2);
 
@@ -197,7 +200,7 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
   image->image = cvImage;
   image->encoding = encoding;
 
-  //Publish image
+  //Publish the original image with the rectangles drawn on it
   publisher.publish(image->toImageMsg());
 
 }
@@ -213,7 +216,7 @@ int main( int argc, char** argv)
   //Set up topics to subscribe and publish to
   image_transport::ImageTransport it(n);
   image_transport::Subscriber sub = 
-    it.subscribe("rgb_input",
+    it.subscribe("input",
 		 1,
 		 callback);
   publisher = it.advertise("output",10);
@@ -243,6 +246,7 @@ int main( int argc, char** argv)
     return 1;
   }
 
+	//Train the face recognizer
   train(csv_file,faces_path);
 
   ROS_INFO("Transfer control to ROS");
