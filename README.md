@@ -8,10 +8,9 @@ Project Discription
 ===================
 The FaceDetector node takes an rgb image as input and finds rectangles that contain faces using OpenCV's face detector. Each face is then extracted from its rectangle and fed into OpenCV's face detector to determine the identity of the person.
 
-Current Accuracy
-===================
-Face Detector: 23.5% false positive rate
-Face Recognizer: 62.7% accuracy
+Current Accuracy<br>
+Face Detector: 23.5% false positive rate<br>
+Face Recognizer: 62.7% accuracy<br>
 
 How to Use
 ===================
