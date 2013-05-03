@@ -4,6 +4,10 @@ BWI Face Recognition
 This is a repository for the code for Ethen Jennings', Mukund Rathi's, and Chris de la Iglesia's UT-Austin FRI project 
 on the BWI stream. This is mainly for online collaboration.
 
+Project Discription
+===================
+The FaceDetector node takes an rgb image as input and finds rectangles that contain faces using OpenCV's face detector. Each face is then extracted from its rectangle and fed into OpenCV's face detector to determine the identity of the person.
+
 How to Use
 ===================
 
@@ -41,3 +45,13 @@ Each line should have the path of an image file relative to training_data_path a
     faces/ethan/face2.jpg;0
     faces/chris/face1.jpg;1
     faces/chris/face2.jpg;1
+    
+Possible Improvements
+=====================
+These are ideas for anyone doing work on face detection and recognition who want to build off our project:
+
+* The face detector false positive rate maybe be able to be improved by using depth from the kinect cameras. For example people's heads form ovals of depth who's edges are defined by a harsh dropoff. If a detected face doesn't have this depth shape, then it probably isn't a person. Additionally, depth info combined with the size of the face rectangle can be used to estimate the physical size of the person's head. Heads that have an unrealistic size can be filtered out.
+* Right now, the training data and faces cropped in real time have some images that show the whole head including foreheads and hair and others that show just the eyes nose and mouth. The recognizer's accuracy could possibly be improved by normalziing faces by resizing them so that the same amount of face is visible in all the training data and in all the detected faces. This could possibly be achieved by detecting features like eyes and noses to calculate how much face is visible in each image.
+* It would be useful to add the ability to track a face between frames to give the robot some sense of short term memory about who is in front of it.
+* If someone wants to actually interface with our code, our node needs to be changed to publish custom messages about the location of detected people. Right now, the code just publishes an image with the faces outlined by rectangles.
+
