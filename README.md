@@ -15,6 +15,8 @@ Face Recognizer: 62.7% accuracy<br>
 How to Use
 ===================
 
+<b>Dependencies:</b> This project requires ROS and OpenCV to run.
+
 To run the default code, start up the launch file 'face_detector.launch'.
 
 This node, by default, takes in RGB images from the '/camera/rgb/image_color' topic, detects and labels faces inside the image, then publishes the new image to '/detector/faces'. The code will only label 'chris', 'ethan', and 'mukund' without updating the training data. In addition, this node publishes the '/cropped_faces' topic which contains the extraced faces from the image.
