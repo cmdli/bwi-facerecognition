@@ -33,7 +33,7 @@ Ptr<FaceRecognizer> model;
 
 
 #define DIFFERENCE_THRESHOLD 3500
-#define MIN_FACE_SIZE 200
+#define MAX_FACE_SIZE 200
 #define CSV_COMMENT_CHAR '#'
 
 //Trains the face recognizer on labelled data
@@ -157,8 +157,8 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
   //Draw boxes and label each face
   for(int i = 0; i < faceRects.size(); i++) {
 
-    //If the face is too small, exclude it
-    if (faceRects[i].width > MIN_FACE_SIZE)
+    //If the face is too big, exclude it
+    if (faceRects[i].width > MAX_FACE_SIZE)
 	continue;
 
     //Extract the face fom the original image and scale it
