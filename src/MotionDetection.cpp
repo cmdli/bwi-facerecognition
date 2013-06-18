@@ -1,8 +1,16 @@
 
+
 #include <ros/ros.h>
+
 #include <image_transport/image_transport.h>
+
 #include <cv_bridge/cv_bridge.h>
 #include <opencv/cv.h>
+
+#include <stdlib.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 #include <opencv2/objdetect/objdetect.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -12,45 +20,39 @@
 
 #include <unistd.h>
 
+image_transport::Publisher publisher;
+
 using namespace std;
 using namespace cv;
 
-HOGDescriptor detector;
-
-image_transport::Publisher publisher;
+bool hasOld = false;
+Mat oldImage;
 
 void callback(const sensor_msgs::ImageConstPtr &imgptr)
 {
+
   //Load image into OpenCV
   const sensor_msgs::Image img = *imgptr;
   cv_bridge::CvImagePtr image = cv_bridge::toCvCopy(img);
   cv::Mat cvImage = image->image;
-  cv::Mat cvGray;
 
-  //Convert image to grayscale
-  cvtColor(cvImage, cvGray, CV_RGB2GRAY);
-
-  //Scale image to half size
-  /*  Size size = cvGray.size();
-  int new_width = size.width/2;
-  int new_height = size.height/2;
-  resize(cvGray, cvGray, Size(new_width, new_height));*/
-
-  //Find people in image
-  vector<Rect> personRects;
-  detector.detectMultiScale(cvGray, personRects);
-
-  //Draw boxes around each person
-  for(int i = 0; i < personRects.size(); i++) {
-    /*    ROS_INFO("Person detected");
-    personRects[i].x *= 2;
-    personRects[i].y *= 2;
-    personRects[i].width *= 2;
-    personRects[i].height *= 2;*/
-    rectangle(cvImage, personRects[i], Scalar(255,0,255));
+  if(!hasOld) {
+    oldImage = cvImage;
+    hasOld = true;
+    return;
   }
 
-  image->image = cvImage;
+  Mat diff;
+  absdiff(cvImage, oldImage, diff);
+  Scalar total;
+  total = sum(diff);
+  stringstream ss;
+  ss << "Diff: " << sum;
+  ROS_INFO(ss.str().c_str());
+  
+  oldImage = cvImage;
+
+  image->image = diff;
 
   //Publish image
   publisher.publish(image->toImageMsg());
@@ -58,9 +60,12 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
 
 }
 
-int main(int argc, char** argv)
+
+
+int main( int argc, char** argv)
 {
-  ros::init(argc, argv, "person_detector");
+  //Init ROS
+  ros::init(argc, argv, "face_detector");
   ros::NodeHandle n;
 
   //Set up topics to subscribe and publish to
@@ -71,12 +76,10 @@ int main(int argc, char** argv)
 		 callback);
   publisher = it.advertise("output",10);
 
-  detector.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
-
   ROS_INFO("Transfer control to ROS");
   ros::spin();
 
   return 0;
 
-
 }
+

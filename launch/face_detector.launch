@@ -1,12 +1,12 @@
 
 <launch>
-	<node pkg="friproject" type="FaceDetector" name="FaceDetector" output="screen">
+	<node pkg="bwi-facerecognition" type="FaceDetector" name="FaceDetector" output="screen">
 	      <remap from="rgb_input" to="camera/rgb/image_color" />
 	      <remap from="depth_input" to="camera/depth/image" />
 	      <remap from="output" to="detector/faces" />
-	      <param name="face_cascade_file" value="$(find friproject)/haarcascades/haarcascade_frontalface_default.xml" />
+	      <param name="face_cascade_file" value="$(find bwi-facerecognition)/haarcascades/haarcascade_profileface.xml" />
 	      <param name="dummy" value="yes" />
-	      <param name="csv_file" value="$(find friproject)/faces.csv" />
-	      <param name="training_data_path" value="$(find friproject)/" />
+	      <param name="csv_file" value="$(find bwi-facerecognition)/faces.csv" />
+	      <param name="training_data_path" value="$(find bwi-facerecognition)/" />
 	</node>
 </launch>

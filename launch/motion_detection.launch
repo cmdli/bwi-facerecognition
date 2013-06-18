@@ -1,0 +1,7 @@
+
+<launch>
+	<node pkg="bwi-facerecognition" type="MotionDetection" name="MotionDetection" output="screen">
+	      <remap from="rgb_input" to="camera/rgb/image_color" />
+	      <remap from="output" to="detector/faces" />
+	</node>
+</launch>

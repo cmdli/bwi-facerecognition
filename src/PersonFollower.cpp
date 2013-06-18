@@ -9,24 +9,23 @@
 #include <opencv/cv.h>
 
 #define INPUT_TOPIC "kinect/rgb/image_color"
-#define DETECTOR_CASCADE_DIRECTORY "haarcascades/"
 
+#define MIN_WIDTH 100
 
-#define MIN_AREA 10
 #define HALF_X 320.0
 #define Z_THRESHOLD (HALF_X*0.1)
 #define Z_MAX_SPEED 1.0
 
-#define BALL_WIDTH 150.0
+#define BALL_WIDTH 180.0
 #define X_THRESHOLD (BALL_WIDTH*0.1)
-#define X_MAX_SPEED 2.0
+#define X_MAX_SPEED 4.0
 
 using namespace std;
 using namespace cv;
 using namespace ros;
 
 Publisher velocity_pub;
-CascadeClassifier personDetector;
+HOGDescriptor detector;
 
 void callback(const sensor_msgs::ImageConstPtr &msg)
 {
@@ -36,28 +35,26 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
   Mat cvImage = image->image;
 
   vector<Rect> persons;
-  personDetector.detectMultiScale(cvImage, persons);
+  detector.detectMultiScale(cvImage, persons);
 
   geometry_msgs::Twist output;
   output.linear.x = 0;
   output.angular.z = 0;
 
   int highestI = -1;
-  int largestArea = 0;
+  int largestWidth = 0;
 
   for (int i = 0; i < persons.size(); i++) {
-    int area = max(persons[i].width, persons[i].height);
-    if(area > largestArea) {
+    if(persons[i].width > largestWidth) {
       highestI = i;
-      largestArea = area;
+      largestWidth = persons[i].width;
     }
   }
 
   cout << "---------------------------------------------" << endl << endl;
-    
+
   if(highestI != -1) {
     int i = highestI;
-
     
     cout << "Person Detected!" << endl;
     cout << "\t-X: " << persons[i].x << endl;
@@ -65,11 +62,10 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
     cout << "\t-W: " << persons[i].width << endl;
     cout << "\t-H: " << persons[i].height << endl;
 
-    if(largestArea >= MIN_AREA) {
+    if(largestWidth >= MIN_WIDTH) {
 
-      /*//Z
-      int x = persons[i].x;
-      double diff = x - HALF_X;
+      //Z
+      /*      double diff = persons[i].x - HALF_X;
       double motorZ = -(diff)/HALF_X * Z_MAX_SPEED;
 
       motorZ *= motorZ < 0 ? -motorZ : motorZ;
@@ -77,11 +73,10 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
       if(abs(diff) < Z_THRESHOLD)
 	motorZ = 0;
 
-      output.angular.z = motorZ;
+      output.angular.z = motorZ;*/
 
       //X
-      int width = persons[i].width;
-      double Xdiff = width - BALL_WIDTH;
+      double Xdiff = persons[i].width - BALL_WIDTH;
       double motorX = -(Xdiff)/BALL_WIDTH * X_MAX_SPEED;
 
       motorX *= motorX < 0 ? -motorX : motorX;
@@ -89,9 +84,7 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
       if(abs(Xdiff) < X_THRESHOLD)
 	motorX = 0;
 
-	output.linear.x = motorX; */
-
-      output.angular.z = 1.0;
+      output.linear.x = motorX; 
 
       cout << endl << endl;
       cout << "Following person with..." << endl;
@@ -109,11 +102,6 @@ void callback(const sensor_msgs::ImageConstPtr &msg)
 int main( int argc, char* argv[])
 {
 
-  if(argc != 2) {
-    cout << "No argument for cascade file" << endl;
-    return 1;
-  }
-
   //Init ROS
   ros::init(argc, argv, "test_blur");
   ros::NodeHandle n;
@@ -129,7 +117,7 @@ int main( int argc, char* argv[])
 
   velocity_pub = n.advertise<geometry_msgs::Twist>("cmd_vel", 1000);
 
-  personDetector.load(DETECTOR_CASCADE_DIRECTORY + string(argv[1]));
+  detector.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
 
   //Transfer control to ROS
   ros::Rate loop_rate(10);

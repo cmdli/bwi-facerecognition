@@ -56,7 +56,7 @@ void train(string csv_file, string faces_path)
     if(!file) {
       string error_msg = "Could not load CSV file: " + csv_file;
       ROS_ERROR(error_msg.c_str());
-	exit(1);
+      exit(1);
     }
 
     string line, relative_file_path, type;
@@ -80,9 +80,9 @@ void train(string csv_file, string faces_path)
 	//Check if file actually exists
 	ifstream file(file_path.c_str());
 	if (!file.good()) {
-		ss.clear();
-		ss << "Unable to load file: " << file_path;
-		ROS_ERROR(ss.str().c_str());
+	  ss.clear();
+	  ss << "Unable to load file: " << file_path;
+	  ROS_ERROR(ss.str().c_str());
 	}
 	else {
 	  file.close();
@@ -126,7 +126,7 @@ int recognizeFace(Mat& image)
   
   //If the model is unsure on the face, mark it as unrecognized
   if (difference > DIFFERENCE_THRESHOLD)
-	label = -1;
+    label = -1;
 
   stringstream ss;
   ss << "Saw: " << label << "	Diff: " << difference;
@@ -161,7 +161,7 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
 
     //If the face is too small, exclude it
     if (faceRects[i].width > 200)
-	continue;
+      continue;
 
     //Extract the face fom the original image and scale it
     cv::Mat croppedFace = cvGray(faceRects[i]);
@@ -180,13 +180,13 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
     bool personUnkown = false;
     switch (person) {
     case 0: 
-        color = Scalar(0,255, 0); name = "Chris"; break;
+      color = Scalar(0,255, 0); name = "Chris"; break;
     case 1: 
-        color = Scalar(255,0,0); name = "Mukund"; break;
+      color = Scalar(255,0,0); name = "Mukund"; break;
     case 2: 
-        color = Scalar(0,128,255); name = "Ethan"; break;
+      color = Scalar(0,128,255); name = "Ethan"; break;
     default: 
-        color = Scalar(0,0,255); name = "Unknown"; break;
+      color = Scalar(0,0,255); name = "Unknown"; break;
     }
 
     rectangle( cvImage, faceRects[i], color);	

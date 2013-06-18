@@ -1,0 +1,8 @@
+
+<launch>
+	<node pkg="bwi-facerecognition" type="PersonDetector" name="PersonDetector" output="screen">
+	      <remap from="rgb_input" to="camera/rgb/image_color" />
+	      <remap from="output" to="detector/faces" />
+	      <param name="person_cascade_file" value="$(find bwi-facerecognition)/haarcascades/haarcascade_lowerbody.xml" />
+	</node>
+</launch>

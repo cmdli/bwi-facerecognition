@@ -4,11 +4,12 @@
      test_blur
 
   </description>
-  <author>C.M. De La Iglesia</author>
+  <author>Chris de la Iglesia, Ethan Jennings, Mukund Rathi</author>
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/test_blur</url>
 
+  <rosdep name="boost" />
   <depend package="roscpp"/>
   <depend package="sensor_msgs"/>
   <depend package="opencv2"/>
