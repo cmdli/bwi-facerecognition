@@ -25,8 +25,9 @@ image_transport::Publisher publisher;
 using namespace std;
 using namespace cv;
 
-bool hasOld = false;
+int hasOld = 0;
 Mat oldImage;
+Mat oldImage2;
 
 void callback(const sensor_msgs::ImageConstPtr &imgptr)
 {
@@ -35,10 +36,11 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
   const sensor_msgs::Image img = *imgptr;
   cv_bridge::CvImagePtr image = cv_bridge::toCvCopy(img);
   cv::Mat cvImage = image->image;
+  cvtColor(cvImage, cvImage, CV_RGB2GRAY);
 
-  if(!hasOld) {
+  if(hasOld < 1) {
     oldImage = cvImage;
-    hasOld = true;
+    hasOld++;
     return;
   }
 
@@ -52,11 +54,33 @@ void callback(const sensor_msgs::ImageConstPtr &imgptr)
   
   oldImage = cvImage;
 
+  Mat kernel = getStructuringElement(MORPH_ELLIPSE,
+				     Size(7,7));
+
+
+  //threshold(diff, diff, 20, 255, THRESH_TOZERO);
+
+  for(int i = 0; i < 15; i++) {
+
+    dilate(diff, diff, kernel);
+
+  }
+
+  threshold(diff, diff, 50, 255, THRESH_BINARY);
+
+  SimpleBlobDetector detector;
+  vector<KeyPoint> points;
+  detector.detect(diff, points);
+
+  for(int i = 0; i < points.size(); i++) {
+    circle(diff, points[i].pt, (int)points[i].size, Scalar(255, 0, 255));
+  }
+
   image->image = diff;
+  image->encoding = "mono8";
 
   //Publish image
   publisher.publish(image->toImageMsg());
-
 
 }
 
